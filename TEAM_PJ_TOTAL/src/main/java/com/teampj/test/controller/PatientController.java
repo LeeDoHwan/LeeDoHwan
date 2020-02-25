@@ -92,11 +92,11 @@ public class PatientController {
 		return "pa/payment";
 	}
 	
-	// 결제 - 일반결제 
+	// 결제 - 카드관리
 	@RequestMapping("payment2.pa")
-	public String payment2() {
+	public String payment2(HttpServletRequest req, Model model) {
 		logger.info("url ==> payment2");
-		
+		service.getCardInfo(req, model);
 		return "pa/payment2";
 	}
 

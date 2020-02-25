@@ -17,14 +17,24 @@
 	
 	<insert id = "insertReservation" parameterType="java.util.Map">
 		INSERT INTO reservation_tbl(reservationNo, patientID, patientName, reservationTime, delectionChk1, delectionChk2, delectionChk3, delectionChk4, delectionChk5)
-		 VALUES(reservation_tbl_seq.nextval, #{id}, #{name}, to_timestamp(#{strDate}), 
+		 VALUES(reservation_seq.nextval, #{id}, #{name}, to_timestamp(#{strDate}), 
 		 <foreach collection="delections" item="delection" separator=",">
-		 	#{delection}		 
+		 	#{delection}
 		 </foreach>
 		 )
 	</insert>
 	
 	<select id = "selReservateionNo" resultType="int">
 		SELECT reservationNo FROM reservation_tbl WHERE patientid=#{id}
+	</select>
+	
+	<!-- 등록 카드 정보 가져오기 -->
+	<select id="getCardInfo" parameterType="String" resultType="com.teampj.test.vo.CardVO">
+		SELECT * FROM card_tbl WHERE patientID = #{patientID}
+	</select>
+	
+	<!-- 등록 카드 유무 판단 -->
+	<select id="cardCnt" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM card_tbl WHERE patientID = #{patientID}
 	</select>
 </mapper>  

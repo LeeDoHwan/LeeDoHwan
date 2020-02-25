@@ -18,4 +18,8 @@ public interface PatientService {
 	// 박미성
 	// 예약처리
 	public void reservationmPro(HttpServletRequest req, Model model);
+	
+	// 한상진
+	// 결제 - 카드관리 - 등록된 카드정보 가져오기
+	public void getCardInfo(HttpServletRequest req, Model model);
 }

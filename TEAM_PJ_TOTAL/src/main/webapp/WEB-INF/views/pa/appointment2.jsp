@@ -10,7 +10,7 @@
     <title>Board</title>
     
     <!-- 기존 부트스트랩 css 추가 부분 -->
-	<link rel="stylesheet" href="resources/css/bootstrap2.min.css" />
+	<link rel="stylesheet" href="resources/css/bootstrap2.min.css" />9i
 	<link rel="stylesheet" href="resources/css/matrix-style.css" />
 	<link href="resources/font-awesome/css/font-awesome.css" rel="stylesheet" />
 	<!-- 끝 -->

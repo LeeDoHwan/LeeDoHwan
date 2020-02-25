@@ -20,7 +20,7 @@
     
 </head>
 
-<body id="reportsPage">    
+<body id="reportsPage">
 	<div class="" id="home">
 	
 <!-- header start -->

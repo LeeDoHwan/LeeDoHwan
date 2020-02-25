@@ -24,23 +24,13 @@
 	<div class="" id="home">
 
 <!-- header start -->
-
 	<c:if test = "${sessionScope.authority == 'ROLE_PATIENT'}">
 		<%@ include file="../include/pa-header-test.jsp" %>
 	</c:if>
-	<%-- 
-	<c:if test = "${sessionScope.authority == 'ROLE_DOCTOR'}">
-		<%@ include file="include/dr-sidebar.jsp" %>
-	</c:if>
-	<c:if test = "${sessionScope.authority == 'ROLE_ADMIN'}">
-		<%@ include file="include/ho-sidebar.jsp" %>
-	</c:if> --%>
-	
 <!-- header end -->
 
 <!-- container -->
 		<div class="container">
-		
 <!-- msg start  -->
       	 <div class="row" align="center">
        	    <div class="col">
@@ -65,39 +55,40 @@
 									<th>종류</th>
 									<th>은행명</th>
 									<th>계좌번호</th>
-									<th>관리</th>
+									<th>  </th>
 								</tr>
 							</thead>
-							<c:forEach var="dto" items="${dtos}">
-								<form mothod="post">
+							<form method="post">
+							<c:if test="${cnt>0}">
+								<c:forEach var="dto" items="${dtos}">
 									<tbody>
-										<tr>
-										<td>${dto.name}</td>
-										<td>${dto.subject}</td>
-										<td>${dto.writer}</td>
-										<td>${dto.regDate}</td>
-										<c:if test="${'ROLE_ADMIN' eq sessionScope.authority }"> 
-										<td colspan ="4" align = "right"><input type="button" class="btn btn-mini" value="작성" onclick="location.href='boardWriteForm.ho'"></td> 
-										</c:if>
-										</tr>
+									
+										
+											<tr>
+											<td>${dto.name}</td>
+											<c:if test="${dto.kind==0}">
+												<td>계좌출금</td>
+											</c:if>
+											<c:if test="${dto.kind!=0}">
+												<td>신용(체크) 카드</td>
+											</c:if>
+											<td>${dto.bankName}</td>
+											<td>${dto.accoutNum}</td>
+											<c:if test="${'ROLE_PATIENT' eq sessionScope.authority }"> 
+												<td colspan ="4" align = "right"><input type="button" class="btn btn-mini" value="삭제" onclick=""></td> 
+											</c:if>
+											</tr>
 									</tbody>
-								</form>
-							</c:forEach> 
-				          	
-				          	<!-- <tbody>
-				          		<form mothod="post">
-					          		<tr>
-					          			<td>갓도환</td>
-					          			<td>신용(체크) 카드</td>
-					          			<td>신한</td>
-					          			<td>110485547894</td>
-					          			<td>
-					          				<input type="button" value="수정">
-					          				<input type="button" value="삭제">
-					          			</td>
-					          		</tr>
-				          		</form>
-				          	</tbody> -->
+								</c:forEach>
+							</c:if>
+							</form>
+							<c:if test="${cnt==0}">
+								<tobody>
+									<tr>
+										<td align="center" colspan="5">등록된 카드가 없습니다.</td>
+									</tr>
+								</tobody>
+							</c:if>
 			            </table>  
 			          </div>
 			        </div>
@@ -132,7 +123,7 @@
 		            <div class="control-group">
 		              <label class="control-label">성별 </label>
 		              <div class="controls">
-		                <input type="radio" name="gender" value="0" id="woman" checked="checked"/><label for="woman" style="padding-right:10px;">여자</label>
+		                <input type="radio" name="gender" id="woman" value="0" checked="checked"/><label for="woman" style="padding-right:10px;">여자</label>
 		                <input type="radio" name="gender" id="man" value="1"/><label for="man">남자</label>
 		              </div>
 		            </div>

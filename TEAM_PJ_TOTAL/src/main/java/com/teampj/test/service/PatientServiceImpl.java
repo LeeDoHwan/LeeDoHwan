@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.teampj.test.persistence.PatientDAO;
+import com.teampj.test.vo.CardVO;
+
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -93,6 +95,24 @@ public class PatientServiceImpl implements PatientService{
 		model.addAttribute("time", time);
 		model.addAttribute("reservationNo", reservationNo);
       
+	}
+	
+	// 한상진
+	// 결제 - 카드관리 - 등록된 카드정보 가져오기
+	@Override
+	public void getCardInfo(HttpServletRequest req, Model model) {
+		String patientID = (String)req.getSession().getAttribute("mem_id");
+		System.out.println("patientID : " + patientID);
+		// 접속한 계정에 등록된 카드가 있는지 확인
+		int cardCnt = dao.cardCnt(patientID);
+		System.out.println("cardCnt : " + cardCnt);
+		
+		if(cardCnt==1) {
+			List<CardVO> vo = dao.getCardInfo(patientID);
+			System.out.println(vo);
+			model.addAttribute("dtos", vo);
+		}
+		model.addAttribute("cnt",cardCnt);
 	}
 
 }

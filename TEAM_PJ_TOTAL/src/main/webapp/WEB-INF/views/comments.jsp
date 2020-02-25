@@ -159,7 +159,7 @@ function getCommentListUpdate(num){
 </script>
 </head>
 <body>
-	<form action="comments.lo" method="post" id = "commentForm">
+	<form action="comments.lo" method="post" id="commentForm">
  	<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}"> 
  	<input type = "hidden" name = "boardNO" value = "${dto.boardNO}"> 
 	<div>
@@ -180,7 +180,7 @@ function getCommentListUpdate(num){
 	</form>
 	
 	<!-- 댓글 리스트 띄울 장소  -->
-	<form action="" method="post" id = "commentListForm">
+	<form action="" method="post" id="commentListForm">
  	<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}"> 
 	<div id = "commentList" align = "left">
 		
