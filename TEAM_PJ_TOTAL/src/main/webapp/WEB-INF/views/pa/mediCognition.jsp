@@ -50,7 +50,7 @@
   </div>
   
   <div class="medicogn"> 
-  	<h3 style="margin-left:280px; font-size:1.8em; margin-top:50px"> </h3> 
+  	<h3 style="margin-left:280px; font-size:1.8em; margin-top:50px"> 사진 넣을 거지롱~ </h3> 
   </div>
   
   

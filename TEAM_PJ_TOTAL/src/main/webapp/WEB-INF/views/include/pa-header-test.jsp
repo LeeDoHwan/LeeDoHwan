@@ -62,7 +62,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="payment.pa">하이패스</a>
-                                <a class="dropdown-item" href="payment2.pa">카드관리</a>
+                                <a class="dropdown-item" href="payment2.pa">일반결제</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -82,7 +82,7 @@
                         </li>       
                         <li class="nav-item">
                             <a class="nav-link" href="board.lo">
-                                <i class="fas fa-list"></i>
+                                <i class="fas fa-shopping-cart"></i>
                                 	게시판
                             </a>
                         </li>

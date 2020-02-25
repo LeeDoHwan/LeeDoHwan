@@ -49,8 +49,7 @@
 <!-- msg close -->
 
 		  <div class="controls">
-			<form action = "selfCheckDepressionResult.pa" method="post" 
-			name="selfCheckBipolarDisorderResult" onsubmit="return totalScore();">
+			<form action = "selfCheckDepressionResult.pa" method="post" name="selfCheckBipolarDisorderResult" onsubmit="">
 				<input type = "hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> 
 				<div align="center" style="">
 				<table class="table table-bordered table-striped" style="width:750px; height:900px;">
@@ -433,27 +432,5 @@
 <script src="resources/js/matrix.tables.js"></script> <!-- 필요 -->
 <!-- 끝 -->
 
-<script>
-//자가진단 점수 합산
-function totalScore() {
-	
- 	var depression = 0;	//점수 합산한 값
-	var scoreValue;	//선택한 버튼의 값
-	
-	for(var i =1; i<=20; i++) {
-	
-		var score = document.getElementsByName('score'+i);
-		for(var j=0; j<score.length; j++) {
-			if(score[j].checked) {
-				scoreValue = score[j].value;
-
-			}
-		}
-		depression += Number(scoreValue);
-	}
-	alert('depression : ' + depression);
-	
-}
-</script>
 </body>
 </html>

@@ -1,12 +1,8 @@
 package com.teampj.test.service;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
-
-import com.teampj.test.vo.CommentVO;
 
 public interface LocalService {
 
@@ -28,16 +24,4 @@ public interface LocalService {
 	public void boardList(HttpServletRequest req, Model model);
 	// 게시판 상세페이지
 	public void boardView(HttpServletRequest req, Model model);
-
-	public void insertComments(HttpServletRequest req, Model model);
-	
-	public List<CommentVO> selectComments(HttpServletRequest req, Model model);
-	
-	public void deleteComment(HttpServletRequest req, Model model);
-	
-	public void updateComment(HttpServletRequest req, Model model);
-	
-	
-
-
 }

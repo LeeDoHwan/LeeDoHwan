@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.teampj.test.vo.AdminVO;
 import com.teampj.test.vo.BoardVO;
-import com.teampj.test.vo.CommentVO;
 import com.teampj.test.vo.DoctorVO;
 import com.teampj.test.vo.PatientVO;
 
@@ -41,14 +40,5 @@ public interface LocalDAO {
 	public List<BoardVO> getArticleList();
 	// 게시글 하나 읽어오기
 	public BoardVO getArticle(int boardNO);
-	
-	public int insertComments(CommentVO vo);
-	
-	public List<CommentVO> selectCommentList(int boardNO);
-	
-	public int deleteComment(int commentNO);
-	
-	public int updateComment(CommentVO vo);
-	
 	
 }

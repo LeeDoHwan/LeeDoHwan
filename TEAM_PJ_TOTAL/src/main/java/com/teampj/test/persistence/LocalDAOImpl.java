@@ -14,7 +14,6 @@ import org.springframework.stereotype.Repository;
 
 import com.teampj.test.vo.AdminVO;
 import com.teampj.test.vo.BoardVO;
-import com.teampj.test.vo.CommentVO;
 import com.teampj.test.vo.DoctorVO;
 import com.teampj.test.vo.PatientVO;
 
@@ -121,33 +120,6 @@ public class LocalDAOImpl implements LocalDAO{
 	public BoardVO getArticle(int boardNO) {
 		LocalDAO dao = sqlSession.getMapper(LocalDAO.class);
 		return dao.getArticle(boardNO);
-	}
-	
-	@Override
-	public int insertComments(CommentVO vo) {
-		LocalDAO dao = sqlSession.getMapper(LocalDAO.class);
-		return dao.insertComments(vo);
-	}
-
-	@Override
-	public List<CommentVO> selectCommentList(int boardNO) {
-		LocalDAO dao = sqlSession.getMapper(LocalDAO.class);
-		
-		return dao.selectCommentList(boardNO);
-	}
-
-	@Override
-	public int deleteComment(int commentNO) {
-		LocalDAO dao = sqlSession.getMapper(LocalDAO.class);
-		
-		return dao.deleteComment(commentNO);	
-	}
-
-	@Override
-	public int updateComment(CommentVO vo) {
-		LocalDAO dao = sqlSession.getMapper(LocalDAO.class);
-		
-		return dao.updateComment(vo);
 	}
 
 

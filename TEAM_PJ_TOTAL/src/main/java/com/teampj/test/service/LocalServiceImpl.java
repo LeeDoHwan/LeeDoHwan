@@ -17,7 +17,6 @@ import org.springframework.ui.Model;
 import com.teampj.test.persistence.LocalDAO;
 import com.teampj.test.vo.AdminVO;
 import com.teampj.test.vo.BoardVO;
-import com.teampj.test.vo.CommentVO;
 import com.teampj.test.vo.DoctorVO;
 import com.teampj.test.vo.PatientVO;
 
@@ -271,55 +270,6 @@ public class LocalServiceImpl implements LocalService{
 		
 		model.addAttribute("dto", vo);
 		model.addAttribute("boardNO", boardNO);
-		
-	}
-	
-	@Override
-	public void insertComments(HttpServletRequest req, Model model) {
-		CommentVO vo = new CommentVO();
-		String writer = (String) req.getSession().getAttribute("mem_id");
-		int boardNO = Integer.parseInt(req.getParameter("boardNO"));
-		String content = req.getParameter("content");
-		
-		vo.setWriter(writer);
-		vo.setBoardNO(boardNO);
-		vo.setContent(content);
-		
-		int insertCnt = dao.insertComments(vo);
-		
-	}
-	
-	@Override
-	public List<CommentVO> selectComments(HttpServletRequest req, Model model){
-		int boardNO = Integer.parseInt(req.getParameter("boardNO"));
-		
-		return dao.selectCommentList(boardNO);
-	}
-
-	@Override
-	public void deleteComment(HttpServletRequest req, Model model) {
-		int commentNO = Integer.parseInt(req.getParameter("commentNO"));
-		System.out.println(commentNO);
-		dao.deleteComment(commentNO);
-		return;
-	}
-
-	@Override
-	public void updateComment(HttpServletRequest req, Model model) {
-		CommentVO vo = new CommentVO();
-		String writer = (String) req.getSession().getAttribute("mem_id");
-		int commentNO = Integer.parseInt(req.getParameter("commentNO")); 
-		String content = req.getParameter("content");
-		
-		vo.setWriter(writer);
-		vo.setCommentNO(commentNO);
-		vo.setContent(content);
-		
-		dao.updateComment(vo);
-		
-		//model.addAttribute("writer", writer);
-		model.addAttribute("commentNO", commentNO);
-		//model.addAttribute("content", content);
 		
 	}
 	

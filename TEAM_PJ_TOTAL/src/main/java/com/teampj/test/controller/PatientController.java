@@ -27,7 +27,6 @@ public class PatientController {
 		return "pa/appointment";
 	}
 
-	
 	// 예약조회
 	@RequestMapping("appointment2.pa")
 	public String appointment2() {
@@ -172,10 +171,8 @@ public class PatientController {
 	
 	// 조울증 자가진단 결과 페이지
 	@RequestMapping("selfCheckBipolarDisorderResult.pa")
-	public String selfCheckBipolarDisorderResult(HttpServletRequest req, Model model) {
+	public String selfCheckBipolarDisorderResult() {
 		logger.info("url ==> selfCheckBipolarDisorderResult");
-		
-		service.BipolarDepressionResult(req, model);
 		
 		return "pa/selfCheckBipolarDisorderResult";
 	}
@@ -189,16 +186,6 @@ public class PatientController {
 	}
 	///////////////////////////////////////////////////////////
 	// 박미성
-	// 예약 - 예약확인
-	@RequestMapping("apptConfirm.pa")
-	public String apptConfirm() {
-		logger.info("url ==> apptConfirm");
-		
-		return "pa/apptConfirm";
-	}
-	////////////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////
-	// 박미성
 	// 예약처리
 	@RequestMapping("appointmentPro.pa")
 	public String appointmentPro(HttpServletRequest req, Model model) {
@@ -206,8 +193,17 @@ public class PatientController {
 		
 		service.reservationmPro(req, model);
 		
+		return "pa/appointmentPro";
+	}
+	
+	// 예약확인 페이지
+	@RequestMapping("appointmentConfirm.pa")
+	public String appointmentConfirm(HttpServletRequest req, Model model) {
+		logger.info("url ==> appointmentConfirm");
+		
 		return "pa/apptConfirm";
 	}
+	
 	///////////////////////////////////////////////////////////
 	// 이도환
 	// 예약 - 예약시간불러오기

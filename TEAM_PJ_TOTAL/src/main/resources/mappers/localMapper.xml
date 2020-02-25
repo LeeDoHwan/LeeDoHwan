@@ -54,23 +54,5 @@
 		SELECT * FROM board_tbl WHERE boardNO = #{boardNO}
 	</select>
 	
-		<!-- 댓글 -->
-	<insert id = "insertComments" parameterType="com.teampj.test.vo.CommentVO">
-		insert into comments_tbl(commentNO, boardNO, writer, content)
-		values(comments_seq.nextval, #{boardNO}, #{writer}, #{content})
-	</insert>
-	
-	<select id = "selectCommentList" resultType = "com.teampj.test.vo.CommentVO">
-		select * from comments_tbl where boardNO = #{boardNO}
-	</select>
-	
-	<delete id="deleteComment" parameterType="int">
-		delete comments_tbl where commentNO = #{commentNO}
-	</delete>
-	
-	<update id="updateComment" parameterType="com.teampj.test.vo.CommentVO">
-		update comments_tbl set content = #{content} where commentNO = #{commentNO}
-	</update>
-	
 </mapper>  
     

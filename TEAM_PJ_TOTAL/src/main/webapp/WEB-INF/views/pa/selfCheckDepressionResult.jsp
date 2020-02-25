@@ -51,12 +51,11 @@
 			  <table class="table table-bordered table-striped">
 				  	<tr>
 				  		<td colspan="2"><br>자가진단 결과는 전문가에 의한 진단만큼 정확하지 않습니다.
-				  						<br>정확한 진단을 원하시면 전문의와 상담받아보시기 바랍니다.
-				  						<br>진단결과를 제출하시면 검진 시 상담에 활용될 수 있습니다.</td>
+				  						<br>정확한 진단을 원하시면 전문의와 상담받아보시기 바랍니다.</td>
 				  	</tr>
 				  	<tr>
-				  		<td><br>점수 : 점</td>
-				  		<td><br><input type="submit" class="btn btn-info" name="제출하기" align="right" href="#"></td>
+				  		<td><br>점수 : </td>
+				  		<td> <br>점</td>
 				  	</tr> 
 				<!--   	<c:if test="totalScore<16">
 				  	<tr>

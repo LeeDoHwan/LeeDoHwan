@@ -47,7 +47,7 @@
      	 </div>
 <!-- msg close -->
 		  <div class="controls"> 
-			<form method="post" name="selfCheckBipolarDisorderResult">
+			<form action = "selfCheckBipolarDisorderResult.pa" method="post" name="selfCheckBipolarDisorderResult" onsubmit="">
 				<input type = "hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> 
 				<div align="center">
 				<table class="table table-bordered table-striped" style="width:750px; height:900px;">
@@ -401,7 +401,7 @@
 				</table>
 				</div>
 				<br>
-				<div align="center"><input type="button" class="btn btn-info" value="진단결과확인" onclick="return totalScore();"></div>
+				<div align="center"><input type="submit" class="btn btn-info" value="진단결과확인"></div>
 			</form>
 		  </div>
   
@@ -429,31 +429,5 @@
 <script src="resources/js/matrix.tables.js"></script> <!-- 필요 -->
 <!-- 끝 -->
 
-<!-- 자가진단 점수합산 -->
-<script>
-//자가진단 점수 합산
-function totalScore() {
-	
- 	var manicScore = 0;	//점수 합산 & 계산한 값
- 	var manic = 0;	//점수 합산한 값
-	var scoreValue;	//선택한 버튼의 값
-	
-	for(var i =1; i<=20; i++) {
-	
-		var score = document.getElementsByName('score'+i);
-		for(var j=0; j<score.length; j++) {
-			if(score[j].checked) {
-				scoreValue = score[j].value;
-			}
-		}
-		manic += Number(scoreValue);
-	}
-	manicScore = manic*1.25;
-	
-	window.location.href="selfCheckBipolarDisorderResult.pa?manicScore="+manicScore;
-	
-}
-</script>
-<!-- 자가진단 점수합산 끝-->
 </body>
 </html>

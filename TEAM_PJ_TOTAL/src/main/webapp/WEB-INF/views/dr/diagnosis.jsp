@@ -11,7 +11,6 @@
     
     <!-- 기존 부트스트랩 css 추가 부분 -->
 	<link rel="stylesheet" href="resources/css/bootstrap2.min.css" />
-	<link rel="stylesheet" href="resources/css/bootstrap-responsive.min.css" />
 	<link rel="stylesheet" href="resources/css/uniform.css" />
 	<link rel="stylesheet" href="resources/css/select2.css" />
 	<link rel="stylesheet" href="resources/css/matrix-style.css" />
@@ -110,18 +109,63 @@ function searchPatient(patientName){
               <tbody>
               	<c:forEach var = "dto" items = "${dtos}">
                 <tr class="gradeX">
-                  <td><a href = "diagnosis.dr?patientName=${dto.patientName}&reservationTime=${dto.reservationTime}">${dto.patientName}</a></td>
+                  <td><a href = "diagnosis.dr?patientName=${dto.patientName}">${dto.patientName}</a></td>
                   <td>${dto.reservationTime}</td>
                   <td class="center">
 					<c:if test = "${dto.reservationState == 0}">
-						진단필요
+						예약완료
 					</c:if>
 					<c:if test = "${dto.reservationState == 1}">
-						진단완료
+						검사완료
 					</c:if>
 				  </td>
                 </tr>
                 </c:forEach>
+                <tr>
+                  <td>이도환</td>
+                  <td>배아픔</td>
+                  <td class="center">날짜</td>
+                </tr>
+                <tr>
+                  <td>박건형</td>
+                  <td>머리아픔</td>
+                  <td class="center">날짜</td>
+                </tr>
+                <tr>
+                  <td>김동규</td>
+                  <td>배아픔</td>
+                  <td class="center">날짜</td>
+                </tr>
+                <tr>
+                  <td>허성민</td>
+                  <td>머리아픔</td>
+                  <td class="center">날짜</td>
+                </tr>
+                <tr>
+                  <td>한상진</td>
+                  <td>배아픔</td>
+                  <td class="center">날짜</td>
+                </tr>
+                <tr>
+                  <td>김현수</td>
+                  <td>머리아픔</td>
+                  <td class="center">날짜</td>
+                </tr>
+                <tr>
+                  <td>허소정</td>
+                  <td>배아픔</td>
+                  <td class="center">날짜</td>
+                </tr>
+                <tr>
+                  <td>박미성</td>
+                  <td>머리아픔</td>
+                  <td class="center">날짜</td>
+                </tr>
+                <tr>
+                  <td>장진호</td>
+                  <td>배아픔</td>
+                  <td class="center">날짜</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -142,26 +186,26 @@ function searchPatient(patientName){
             <div class="control-group">
               <label class="control-label">환자 이름 :</label>
               <div class="controls">
-                <input type="text" class="span8" name = "patientName" placeholder="patientName" value = "${vo.patientName}" readonly/>
+                <input type="text" class="span7" name = "patientName" placeholder="patientName" value = "${vo.patientName}" readonly/>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">나이 :</label>
               <div class="controls">
-                <input type="text" class="span10" name = "age" placeholder="age" value = "${vo.age}" readonly />
+                <input type="text" class="span7" name = "age" placeholder="age" value = "${vo.age}" readonly />
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">주민번호 :</label>
               <div class="controls">
-                <input type="text"  class="span6" name = "height" placeholder="jumin1" value = "${vo.jumin1}" readonly /> -
-                <input type="text"  class="span7" name = "height" placeholder="jumin2" value = "${vo.jumin2}" readonly />
+                <input type="text"  class="span3" name = "height" placeholder="jumin1" value = "${vo.jumin1}" readonly /> -
+                <input type="text"  class="span4" name = "height" placeholder="jumin2" value = "${vo.jumin2}" readonly />
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">성별 :</label>
               <div class="controls">
-                <input type="text" class="span10" name = "gender" placeholder="gender" 
+                <input type="text" class="span7" name = "gender" placeholder="gender" 
                 <c:if test = "${vo.gender==0}"> value = "여성"</c:if> 
                 <c:if test = "${vo.gender==1}"> value = "남성"</c:if>
                 readonly />
@@ -193,6 +237,7 @@ function searchPatient(patientName){
               <div class="controls">
               	<!-- 남 90미만 / 여 85미만 -->
                 <input type="text" class="span5" placeholder="허 리 둘 레" value = "80" readonly/>&nbsp;&nbsp;cm 
+                <span class="help-block blue span8"> 남 90미만 / 여 85미만</span>
               </div>
             </div>
             <div class="control-group">
@@ -347,12 +392,12 @@ function searchPatient(patientName){
     <div class="span8">
       
       <div class="widget-box">
-        <div class="widget-title">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
           <h5>선택 검사</h5>
         </div>
         <div class="widget-title">
-            <ul class="nav nav-tabs"><!--  class="active" -->
-              <li><a data-toggle="tab" href="#tab1" class="active">MRI검사(폐)</a></li>
+            <ul class="nav nav-tabs">
+              <li class="active"><a data-toggle="tab" href="#tab1">MRI검사(폐)</a></li>
               <li><a data-toggle="tab" href="#tab2">유방암검사</a></li>
               <li><a data-toggle="tab" href="#tab3">폐렴검사</a></li>
               <li><a data-toggle="tab" href="#tab4">폐결핵검사</a></li>
@@ -458,13 +503,13 @@ function searchPatient(patientName){
               <p> waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end. </p>
             </div>
             <div id="tab3" class="tab-pane">
-              <img src = "resources/img/test_tab3.jpeg">
+              <p>full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end. </p>
             </div>
             <div id="tab4" class="tab-pane">
-              <img src = "resources/img/test_tab4.png">
+              <p> waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end. </p>
             </div>
             <div id="tab5" class="tab-pane">
-              <img src = "resources/img/test_brain.jpg">
+              <p>full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end. </p>
             </div>
           </div>
       </div>
@@ -998,9 +1043,6 @@ function searchPatient(patientName){
 <script src="resources/js/bootstrap2.min.js"></script> <!-- 필요 -->
 <script src="resources/js/jquery.dataTables.min.js"></script> <!-- 필요 -->
 <script src="resources/js/matrix.tables.js"></script> <!-- 필요 -->
-
-<script src="resources/js/jquery.ui.custom.js"></script> 
-<script src="resources/js/matrix.js"></script>
 <!-- 끝 -->
 </body>
 </html>

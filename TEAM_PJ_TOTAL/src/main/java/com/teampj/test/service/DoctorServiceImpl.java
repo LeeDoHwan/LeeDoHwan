@@ -30,7 +30,6 @@ public class DoctorServiceImpl implements DoctorService{
 	@Override
 	public void diagnosis(HttpServletRequest req, Model model) {
 		String patientName = req.getParameter("patientName");
-		String reservationTime = req.getParameter("reservationTime");
 		System.out.println(patientName);
 		List<ReservationVO> list = dao.selectReservationList();
 		model.addAttribute("dtos",list);
@@ -41,7 +40,7 @@ public class DoctorServiceImpl implements DoctorService{
 			int nMonth = calendar.get(Calendar.MONTH);
 			int nDay = calendar.get(Calendar.DAY_OF_MONTH);
 	
-			//Timestamp reservationTime = new Timestamp(nYear,nMonth,nDay,9,0,0,0);
+			Timestamp reservationTime = new Timestamp(nYear,nMonth,nDay,9,0,0,0);
 			System.out.println(reservationTime);
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("patientName", patientName);

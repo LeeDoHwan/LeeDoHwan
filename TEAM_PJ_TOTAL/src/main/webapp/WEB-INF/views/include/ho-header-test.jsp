@@ -77,7 +77,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="board.lo">
-                                <i class="fas fa-list"></i>
+                                <i class="fas fa-shopping-cart"></i>
                                 	게시판
                             </a>
                         </li>

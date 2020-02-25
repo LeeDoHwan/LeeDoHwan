@@ -232,7 +232,7 @@ button:focus {
 }
 thead {
   background-color: #486177;
-  color: #000000;
+  color: #fff;
 }
 .table thead th {
   border-bottom: 0;
@@ -351,25 +351,6 @@ thead {
 .form-group {
   margin-bottom: 15px;
 }
-
-/* 추가 : 비밀번호 변경 btn */
-.btn-mod {
-  border-radius: 5px;
-  transition: all 0.2s ease;
-  margin-top: 8%;
-  margin-left: 20%;
-  max-width: 60%;
-}
-
-.btn-mod-flat {
-  border-radius: 5px;
-  padding: 13px 28px;
-  transition: all 0.2s ease;
-  max-width: 80%;
-  margin-left: 10%;
-}
-/* 추가 : 비밀번호 변경 btn 끝*/
-
 .btn {
   border-radius: 0;
   padding: 13px 28px;

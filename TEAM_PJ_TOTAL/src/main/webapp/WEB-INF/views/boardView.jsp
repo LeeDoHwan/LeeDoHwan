@@ -17,6 +17,7 @@
 	
 	<!-- setting : 현재 부트스트랩 css 추가. 순서대로 안하면 깨져서 우선 현재 부트스트랩만 추가해놓음.-->
     <%@ include file = "include/setting.jsp" %> 
+	
 </head>
 <body id="reportsPage">
 	<div class="" id="home">
@@ -26,13 +27,12 @@
 	<c:if test = "${sessionScope.authority == 'ROLE_PATIENT'}">
 		<%@ include file="include/pa-header-test.jsp" %>
 	</c:if>
-	<%-- 
 	<c:if test = "${sessionScope.authority == 'ROLE_DOCTOR'}">
-		<%@ include file="include/dr-sidebar.jsp" %>
+		<%@ include file="include/dr-header-test.jsp" %>
 	</c:if>
 	<c:if test = "${sessionScope.authority == 'ROLE_ADMIN'}">
-		<%@ include file="include/ho-sidebar.jsp" %>
-	</c:if> --%>
+		<%@ include file="include/ho-header-test.jsp" %>
+	</c:if>
 	
 <!-- header end -->
 
@@ -64,11 +64,8 @@
 		   		<input type="button" class="btn btn-mini" value="수정" onclick="location.href='boardModifyForm.ho?boardNO=${dto.boardNO}'"> 
 		   		<input type="button" class="btn btn-mini" value="삭제" onclick="location.href='boardDeletePro.ho?boardNO=${dto.boardNO}'"> 
 		   	</c:if>
-	   	
-	   	<div align = "center">
-		<%@ include file = "comments.jsp" %>   	   	
-		</div>
-		<!-- contents end -->	 	
+	<!-- contents end -->	   	
+		   	
 		</div>
 	</div>
 <!-- container end -->

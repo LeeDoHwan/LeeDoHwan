@@ -5,10 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 
 public interface PatientService {
-	
-	public void BipolarDepressionResult(HttpServletRequest req, Model model);
-
-	
 	public final String[] RESERTVATIONTIME = {"09:00","10:00","11:00","12:00","14:00","15:00","16:00","17:00"};
 	
 	// 이도환

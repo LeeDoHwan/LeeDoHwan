@@ -17,7 +17,7 @@
 	
 	<insert id = "insertReservation" parameterType="java.util.Map">
 		INSERT INTO reservation_tbl(reservationNo, patientID, patientName, reservationTime, delectionChk1, delectionChk2, delectionChk3, delectionChk4, delectionChk5)
-		 VALUES(reservation_tbl_seq.nextval, #{id}, #{name}, to_timestamp(#{strDate}), 
+		 VALUES(reservation_seq.nextval, #{id}, #{name}, to_timestamp(#{strDate}), 
 		 <foreach collection="delections" item="delection" separator=",">
 		 	#{delection}		 
 		 </foreach>
@@ -25,6 +25,15 @@
 	</insert>
 	
 	<select id = "selReservateionNo" resultType="int">
-		SELECT reservationNo FROM reservation_tbl WHERE patientid=#{id}
+		SELECT reservationNo
+  		  FROM (SELECT reservationNo
+                       , ROW_NUMBER() OVER(ORDER BY reservationTime DESC) nth
+                  FROM reservation_tbl 
+                 WHERE patientID=#{id})
+         WHERE nth=1
+	</select>
+	
+	<select id="selReservationState" resultType="int">
+		SELECT COUNT(*) FROM reservation_tbl WHERE patientID=#{id} AND reservationstate=0
 	</select>
 </mapper>  

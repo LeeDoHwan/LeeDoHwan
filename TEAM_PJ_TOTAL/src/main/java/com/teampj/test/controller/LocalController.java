@@ -1,7 +1,5 @@
 package com.teampj.test.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.teampj.test.service.LocalService;
-import com.teampj.test.vo.CommentVO;
 
 @Controller
 public class LocalController {
@@ -218,50 +215,5 @@ public class LocalController {
 		
 		return "boardView";
 	}
-	
-	// 댓글 작성
-	   @RequestMapping("comments.lo")
-	   @ResponseBody
-	   public void comments(HttpServletRequest req, Model model) {
-	      logger.info("url ==> comments");
-	      
-	      service.insertComments(req, model);
-	      
-	      return;
-	   }
-	   
-	   // 댓글 불러오기
-	   @RequestMapping("commentList.lo")
-	   @ResponseBody
-	   public List<CommentVO> commentList(HttpServletRequest req, Model model) {
-	      logger.info("url ==> commentList");
-	      
-	      List<CommentVO> list = service.selectComments(req, model);
-	   
-	      return list;
-	   }
-	   
-	   // 댓글 삭제
-	   @RequestMapping("deleteComment.lo")
-	   @ResponseBody
-	   public void deleteComment(HttpServletRequest req, Model model) {
-	      logger.info("url ==> deleteComment");
-	      
-	      service.deleteComment(req, model);
-	      
-	      return;
-	   }
-	   
-	   // 댓글 수정 완료 버튼
-	   @RequestMapping("updateComment.lo")
-	   @ResponseBody
-	   public void updateComment(HttpServletRequest req, Model model) {
-	      logger.info("url ==> updateComment");
-	      
-	      service.updateComment(req, model);
-	      
-	      return;
-	   }	
-
 
 }

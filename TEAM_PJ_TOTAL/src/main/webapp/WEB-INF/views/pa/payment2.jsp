@@ -7,20 +7,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Board</title>
+    <title>Product Admin - Dashboard HTML Template</title>
     
     <!-- 기존 부트스트랩 css 추가 부분 -->
-	<link rel="stylesheet" href="resources/css/bootstrap2.min.css" />
-	<link rel="stylesheet" href="resources/css/matrix-style.css" />
-	<link href="resources/font-awesome/css/font-awesome.css" rel="stylesheet" />
-	<!-- 끝 -->
-	
-	<!-- setting : 현재 부트스트랩 css 추가. 순서대로 안하면 깨져서 우선 현재 부트스트랩만 추가해놓음.-->
+    <link rel="stylesheet" href="resources/css/bootstrap2.min.css" />
+    <link href="resources/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="resources/css/matrix-style.css" /> <!-- widgetbox -- margin이용 -->
+    <!-- 끝 -->
+    
+    <!-- setting : 현재 부트스트랩 css 추가. 순서대로 안하면 깨져서 우선 현재 부트스트랩만 추가해놓음.-->
     <%@ include file = "../include/setting.jsp" %> 
-	
+    
 </head>
 
-<body id="reportsPage">
+<body id="reportsPage">    
 	<div class="" id="home">
 
 <!-- header start -->
@@ -28,164 +28,25 @@
 	<c:if test = "${sessionScope.authority == 'ROLE_PATIENT'}">
 		<%@ include file="../include/pa-header-test.jsp" %>
 	</c:if>
-	<%-- 
-	<c:if test = "${sessionScope.authority == 'ROLE_DOCTOR'}">
+	<%-- <c:if test = "${sessionScope.authority == 'ROLE_DOCTOR'}">
 		<%@ include file="include/dr-sidebar.jsp" %>
 	</c:if>
 	<c:if test = "${sessionScope.authority == 'ROLE_ADMIN'}">
 		<%@ include file="include/ho-sidebar.jsp" %>
 	</c:if> --%>
-	
+
 <!-- header end -->
 
 <!-- container -->
 		<div class="container">
-		
-<!-- msg start  -->
-      	 <div class="row" align="center">
-       	    <div class="col">
-       	        <p class="text-white mt-5 mb-5"><b>하이패스 카드등록</b></p>
-       	    </div>
-     	 </div>
-<!-- msg close -->
-		<!-- contents start -->
-		<div class="container-fluid">
-          	<!-- row -->
-         	<div class="row-fluid">
-				<div class="span12">
-					<div class="widget-box">
-			            <div class="widget-title"> 
-			            	<h5>카드 관리</h5>
-			            </div>
-			          	<!-- <div class="widget-content nopadding"> -->
-			            <table class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>이름</th>
-									<th>종류</th>
-									<th>은행명</th>
-									<th>계좌번호</th>
-									<th>관리</th>
-								</tr>
-							</thead>
-							<c:forEach var="dto" items="${dtos}">
-								<form mothod="post">
-									<tbody>
-										<tr>
-										<td>${dto.name}</td>
-										<td>${dto.subject}</td>
-										<td>${dto.writer}</td>
-										<td>${dto.regDate}</td>
-										<c:if test="${'ROLE_ADMIN' eq sessionScope.authority }"> 
-										<td colspan ="4" align = "right"><input type="button" class="btn btn-mini" value="작성" onclick="location.href='boardWriteForm.ho'"></td> 
-										</c:if>
-										</tr>
-									</tbody>
-								</form>
-							</c:forEach> 
-				          	
-				          	<!-- <tbody>
-				          		<form mothod="post">
-					          		<tr>
-					          			<td>갓도환</td>
-					          			<td>신용(체크) 카드</td>
-					          			<td>신한</td>
-					          			<td>110485547894</td>
-					          			<td>
-					          				<input type="button" value="수정">
-					          				<input type="button" value="삭제">
-					          			</td>
-					          		</tr>
-				          		</form>
-				          	</tbody> -->
-			            </table>  
-			          </div>
-			        </div>
-		        </div>
-	        </div>
-		 <div class="container-fluid">
-		  <div class="row-fluid">
-		    <div class="span12">
-		      <div class="widget-box">
-		        <div class="widget-title">
-		          <h5>하이패스 카드 등록</h5>
-		        </div>
-		        <div class="widget-content nopadding">
-		          <form action="#" method="get" class="form-horizontal">
-		            <div class="control-group">
-		              <label class="control-label"> 카드번호 </label>
-		              <div class="controls">
-		                <input type="text" maxlength="4" class="span2" required />   -
-		                <input type="password" maxlength="4" class="span2" required/>    -
-		                <input type="password" maxlength="4" class="span2" required/>    -
-		                <input type="password" maxlength="4" class="span2" required/>
-		              </div>
-		            </div>
-		            <div class="control-group">
-		              <label class="control-label"> 핸드폰번호 </label>
-		              <div class="controls">
-		                <input type="text" class="span2" name="phonNum1" maxlength="3" required/>	-
-		                <input type="text" class="span2" name="phonNum2" maxlength="4" required/>	-
-		                <input type="text" class="span2" name="phonNum3" maxlength="4" required/>
-		              </div>
-		            </div>
-		            <div class="control-group">
-		              <label class="control-label">성별 </label>
-		              <div class="controls">
-		                <input type="radio" name="gender" value="0" id="woman" checked="checked"/><label for="woman" style="padding-right:10px;">여자</label>
-		                <input type="radio" name="gender" id="man" value="1"/><label for="man">남자</label>
-		              </div>
-		            </div>
-		            <div class="control-group">
-		              <label class="control-label">이름</label>
-		              <div class="controls">
-		                <input type="text" class="span6" name="name" required/>
-		              </div>
-		            </div>
-		            <div class="control-group">
-		              <label class="control-label">생년월일</label>
-		              <div class="controls">
-		                <input type="text" class="span6" maxlength="6" name="birth" required/><span class="help" style="color:gray">입력 예)771111</span>
-		              </div>
-		            </div>
-		            <div class="control-group">
-		              <label class="control-label">결제 선택 </label>
-		              <div class="controls">
-		                <input type="radio" name="pay" id="acc" value="0" checked="checked"/><label for="acc" style="padding-right:10px;">계좌출금</label>
-		                <input type="radio" name="pay" id="card" value="1"/><label for="card">신용(체크)카드</label>
-		              </div>
-		            </div>
-		            <div class="control-group">
-		              <label class="control-label">출금은행명</label>
-		              <div class="controls">
-		              	<select name="bankName" class="span6" required="required">
-		              		<option value="">선택</option>
-		              		<option value="신한">신한(SH)</option>
-		              		<option value="국민">국민(KB)</option>
-		              		<option value="기업">기업(IBK)</option>
-		              	</select>
-		              </div>
-		            </div>
-		            <div class="control-group">
-		              <label class="control-label">계좌번호 </label>
-		              <div class="controls">
-		                <input type="text" class="span6" name="accoutNum" placeholder="-없이 입력" required/>
-		              </div>
-		            </div>
-		            
-		            <div class="form-actions">
-		              <button type="submit" class="btn btn-success">Save</button>
-		            </div>
-		          </form>
-		        </div>
-		      </div>
-		     </div>
-		    </div>
-		  </div>
-		<!-- contents end -->
-  </div> 
-  <!-- container end -->
-</div>
+		<div class="row-fluid">
+			<div class="span2"></div>
+      		<div class="span8">
+			  <img src="resources/img/include/kakaopay.png">
+			</div>
+		</div>
+		</div>
+	</div>
 <!-- close content -->
 
 <!--Footer-part-->

@@ -40,8 +40,8 @@
 		<div class="container">
 			<div style="text-align:center;"><h3>자가진단 </h3></div>
 			<div align="center">
-			  <a href="selfCheckBipolarDisorder.pa"><img src="resources/img/selfCheck/DepressionTest.png" style="width:300px; height:300px; align:center;"></a>
-			  <a href="selfCheckDepression.pa"><img src="resources/img/selfCheck/BipolarDisorderTest.png" style="width:300px; height:300px; align:center;"></a>
+			  <a href="selfCheckDepression.pa"><img src="resources/img/selfCheck/DepressionTest.png" style="width:300px; height:300px; align:center;"></a>
+			  <a href="selfCheckBipolarDisorder.pa"><img src="resources/img/selfCheck/BipolarDisorderTest.png" style="width:300px; height:300px; align:center;"></a>
 			</div>
 			  <br><br>
 			<div style="text-align:center;">

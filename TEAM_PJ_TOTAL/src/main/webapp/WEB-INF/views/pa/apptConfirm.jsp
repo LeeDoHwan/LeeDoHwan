@@ -48,6 +48,7 @@
 <!-- msg close -->  
   
 <!-- contents start -->  
+	
 	<div class="container-fluid">
 	  	<div id="content-section">
 	    	<div class="apptConfirm">
