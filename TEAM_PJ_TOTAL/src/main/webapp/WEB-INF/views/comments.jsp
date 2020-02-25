@@ -80,15 +80,13 @@ function getCommentList(){
             if(data.length > 0){
                html += "<div><span style = 'font-weight : bold;'>댓글</div>";
                 for(i=0; i<data.length; i++){
-                	html += "<div class='container-fluid'>";
-                	html += "<div class='row tm-content-row'>";
-                	html += "<div class='tm-product-table-container-noscroll col-12'>";
-                	html += "<table class='table table-hover tm-table-small tm-product-table' style='width:1100px;'>";
-                	html += "<thead> <th scope='col'><a style='color:#2eceb4;'>"+ data[i].writer +"</a>&nbsp;&nbsp;<img src='resources/img/modify.png' style='width:30px; height:30px;' onclick='getCommentListUpdate(" + i + ");'>";
-                	html += "<br/><br/><a style='color:white;'>"+ data[i].content+"</a>";
-                	html += "&nbsp;<img src='resources/img/delete.png' style='width:30px; height:30px;' onclick='fn_comment_delete(" + data[i].commentNO + ");'></th>";
-                	html += "</td></table>";
-                	html += "</thead></table></div></div></div>";
+                	html += "<table><tr><td><b>";
+                	html += data[i].writer;
+                	html += "</b></td><td><input type='button' value='수정' onclick='getCommentListUpdate(" + i + ");'></td>";
+                	html += "<td><input type='button' value='삭제' onclick='fn_comment_delete(" + data[i].commentNO + ");'></td>";
+                	html += "</tr></table><table><tr><td style='color:white;'>";
+                	html += data[i].content;
+                	html += "</td></tr></table>";
                 }
                 
             } else {
@@ -122,7 +120,7 @@ function getCommentListUpdate(num){
             var cCnt = data.length;
             
             if(data.length > 0){
-               html += "<div><span style = 'font-weight : bold;'></div>";
+               html += "<div><span style = 'font-weight : bold;'>댓글</div>";
                 for(i=0; i<data.length; i++){
                 	
                 	html += "<table><tr><td><b>";
@@ -167,20 +165,20 @@ function getCommentListUpdate(num){
 	<div>
 		<table>
 			<tr>
-				<td><hr style="color:white;"></td>
+				<td><b>댓글 (댓글 갯수)</b></td>
 			</tr>
 		</table>
 	</div>
-	<div style="width:1050px;">
+	<div style="/* border:solid 0.5px black;  */width:1050px;">
 		<table>
 			<tr>
-				<td><input type="text" name="content" style="height:50px; width:1050px;" placeholder="댓글을 작성해주세요."></td>
+				<td><input type="text" name="content" style="height:50px; width:800px;" placeholder="댓글을 작성해주세요."></td>
 				<td><input type="button" onclick = "fn_comment();" value="작성" style="background-color:#6a7bad; width:50px; height:55px; color:white;"></td>
 			</tr>
 		</table>
 	</div>	
 	</form>
-                
+	
 	<!-- 댓글 리스트 띄울 장소  -->
 	<form action="" method="post" id = "commentListForm">
  	<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}"> 
