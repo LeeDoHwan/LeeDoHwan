@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace = "com.teampj.test.persistence.PatientDAO">
+	<select id = "selectReservationTime" resultType = "int">
+		SELECT COUNT(*) FROM reservation_tbl WHERE reservatIonTime 
+		BETWEEN #{date} AND #{date} || ' 23:59:59.998'
+		AND reservatIonTime LIKE '%' || #{time} || '%'
+	</select>
+	
+	<select id = "selectPatientName" resultType = "String">
+		SELECT patientname FROM patient_tbl WHERE patientid=#{id}
+	</select>
+	
+	<insert id = "insertReservation" parameterType="java.util.Map">
+		INSERT INTO reservation_tbl(reservationNo, patientID, patientName, reservationTime, delectionChk1, delectionChk2, delectionChk3, delectionChk4, delectionChk5)
+		 VALUES(reservation_tbl_seq.nextval, #{id}, #{name}, to_timestamp(#{strDate}), 
+		 <foreach collection="delections" item="delection" separator=",">
+		 	#{delection}		 
+		 </foreach>
+		 )
+	</insert>
+	
+	<select id = "selReservateionNo" resultType="int">
+		SELECT reservationNo FROM reservation_tbl WHERE patientid=#{id}
+	</select>
+</mapper>  

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace = "com.teampj.test.persistence.DoctorDAO">
+	<select id = "selectReservation" resultType = "com.teampj.test.vo.ReservationVO">
+		SELECT * FROM reservation_tbl WHERE patientName = #{patientName} AND reservationTime = #{reservationTime}
+	</select>
+	
+	<select id = "selectReservationList" resultType = "com.teampj.test.vo.ReservationVO">
+		SELECT * FROM reservation_tbl WHERE reservationTime LIKE '%' || sysdate || '%'
+	</select>
+</mapper>  
+    

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace = "com.teampj.test.persistence.LocalDAO">
+	<select id = "selectAdmin" resultType = "com.teampj.test.vo.AdminVO">
+		SELECT * FROM admin_tbl WHERE adminID = #{adminID}
+	</select>
+	
+	<select id = "selectDoctor" resultType = "com.teampj.test.vo.DoctorVO">
+		SELECT * FROM doctor_tbl WHERE doctorID = #{doctorID}
+	</select>
+	
+	<select id = "selectPatient" resultType = "com.teampj.test.vo.PatientVO">
+		SELECT * FROM patient_tbl WHERE patientID = #{patientID}
+	</select>
+	
+	<select id = "selectPatientList" resultType = "com.teampj.test.vo.PatientVO">
+		SELECT * FROM patient_tbl WHERE patientName LIKE '%' || #{keyword} || '%'
+	</select>
+	
+	<update id = "updatePatientEnabled" parameterType="String">
+		UPDATE patient_tbl SET enabled = 1 WHERE key = #{key}
+	</update>
+	
+	<insert id = "insertPatient" parameterType="com.teampj.test.vo.PatientVO">
+		INSERT INTO patient_tbl(patientID, patientPW, jumin1, jumin2, address1, address2, address3, gender, age, patientName, tel, email, regDate, key)
+		VALUES (#{patientID} , #{patientPW}, #{jumin1}, #{jumin2}, #{address1}, #{address2}, #{address3}, #{gender}, #{age}, #{patientName}, #{tel}, #{email}, #{regDate}, #{key})
+	</insert>
+	
+	<insert id = "insertDoctor" parameterType="com.teampj.test.vo.DoctorVO">
+		INSERT INTO doctor_tbl(doctorID , doctorPW, doctorName, email, licence, tel)
+		VALUES (#{doctorID} ,#{doctorPW},#{doctorName}, #{email}, #{licence},#{tel})
+	</insert>
+	
+	<insert id = "insertAdmin" parameterType="com.teampj.test.vo.AdminVO">
+		INSERT INTO admin_tbl(adminID , adminPW)
+		VALUES (#{adminID} , #{adminPW})
+	</insert>
+	
+	<!-- 게시판  -->
+	<select id = "getArticleCnt" resultType = "int">
+		  SELECT COUNT(*) FROM board_tbl	  
+	</select>
+   
+	<select id="getArticleList" resultType="com.teampj.test.vo.BoardVO">
+		SELECT * FROM board_tbl 
+	   	ORDER BY boardNO DESC
+	</select>
+	
+	<select id="getArticle" resultType="com.teampj.test.vo.BoardVO">
+		SELECT * FROM board_tbl WHERE boardNO = #{boardNO}
+	</select>
+	
+		<!-- 댓글 -->
+	<insert id = "insertComments" parameterType="com.teampj.test.vo.CommentVO">
+		insert into comments_tbl(commentNO, boardNO, writer, content)
+		values(comments_seq.nextval, #{boardNO}, #{writer}, #{content})
+	</insert>
+	
+	<select id = "selectCommentList" resultType = "com.teampj.test.vo.CommentVO">
+		select * from comments_tbl where boardNO = #{boardNO}
+	</select>
+	
+	<delete id="deleteComment" parameterType="int">
+		delete comments_tbl where commentNO = #{commentNO}
+	</delete>
+	
+	<update id="updateComment" parameterType="com.teampj.test.vo.CommentVO">
+		update comments_tbl set content = #{content} where commentNO = #{commentNO}
+	</update>
+	
+</mapper>  
+    
