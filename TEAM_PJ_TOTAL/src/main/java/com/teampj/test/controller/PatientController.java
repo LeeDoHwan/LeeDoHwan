@@ -119,13 +119,47 @@ public class PatientController {
 		return "pa/result";
 	}
 	
-	// 허소정 마이페이지 - 수정, 삭제
+	// 허소정 마이페이지 - 정보 띄우기 
 	@RequestMapping("myPage_pa.pa")
-	public String myPage_pa() {
+	public String myPage_pa(HttpServletRequest req, Model model) {
 		logger.info("url ==> myPage_pa");
+		
+		service.myPageContents(req, model);
 		
 		return "pa/myPage_pa";
 	}
+	
+	// 허소정 마이페이지 - 비밀번호 변경
+	@RequestMapping("myPageModPw.pa")
+	public String myPageModPw(HttpServletRequest req, Model model) {
+		logger.info("url ==> myPageModPw");
+		
+		service.myPageModPw(req, model);
+		
+		return "pa/myPageModPro";
+	}
+	
+	// 허소정 마이페이지 - 내 정보 변경 (신장, 체중, 전화번호)
+	@RequestMapping("myPageModInfo.pa")
+	public String myPageModInfo(HttpServletRequest req, Model model) {
+		logger.info("url ==> myPageModInfo");
+		
+		service.myPageModInfo(req, model);
+		
+		return "pa/myPageModPro";
+	}
+	
+	// 허소정 마이페이지 - 주소 변경 
+	@RequestMapping("myPageModAddr.pa")
+	public String myPageModAddr(HttpServletRequest req, Model model) {
+		logger.info("url ==> myPageModAddr");
+		
+		service.myPageModAddr(req, model);
+		
+		return "pa/myPageModPro";
+	}
+	
+	
 	
 	// 허소정 약품검색
 	@RequestMapping("medictionary.pa")
@@ -195,29 +229,6 @@ public class PatientController {
 		logger.info("url ==> apptConfirm");
 		
 		return "pa/apptConfirm";
-	}
-	////////////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////
-	// 박미성
-	// 예약처리
-	@RequestMapping("appointmentPro.pa")
-	public String appointmentPro(HttpServletRequest req, Model model) {
-		logger.info("url ==> appointmentPro");
-		
-		service.reservationmPro(req, model);
-		
-		return "pa/apptConfirm";
-	}
-	///////////////////////////////////////////////////////////
-	// 이도환
-	// 예약 - 예약시간불러오기
-	@RequestMapping("selectReservationTime.pa")
-	public String selectReservationTime(HttpServletRequest req, Model model) {
-		logger.info("url ==> selectReservationTime");
-		
-		service.selectReservationTime(req, model);
-		
-		return "pa/selectReservationTime";
 	}
 	////////////////////////////////////////////////////////////////
 }

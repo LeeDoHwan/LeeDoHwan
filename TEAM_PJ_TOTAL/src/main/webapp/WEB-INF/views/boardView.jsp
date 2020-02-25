@@ -59,15 +59,16 @@
 				        </div>
 				    </div>
 				 </div>
-			 </div>
+			 
 		  	<c:if test="${'ROLE_ADMIN' eq sessionScope.authority}"> 
 		   		<input type="button" class="btn btn-mini" value="수정" onclick="location.href='boardModifyForm.ho?boardNO=${dto.boardNO}'"> 
 		   		<input type="button" class="btn btn-mini" value="삭제" onclick="location.href='boardDeletePro.ho?boardNO=${dto.boardNO}'"> 
 		   	</c:if>
 	   	
-	   	<div align = "center">
-		<%@ include file = "comments.jsp" %>   	   	
+		<%@ include file = "comments.jsp" %>   	
+		
 		</div>
+		   	
 		<!-- contents end -->	 	
 		</div>
 	</div>

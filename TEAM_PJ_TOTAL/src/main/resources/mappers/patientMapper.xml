@@ -5,26 +5,36 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace = "com.teampj.test.persistence.PatientDAO">
-	<select id = "selectReservationTime" resultType = "int">
-		SELECT COUNT(*) FROM reservation_tbl WHERE reservatIonTime 
-		BETWEEN #{date} AND #{date} || ' 23:59:59.998'
-		AND reservatIonTime LIKE '%' || #{time} || '%'
+
+	<select id="getMyPageContents" resultType="com.teampj.test.vo.PatientVO">
+	
+		SELECT patientID, patientPW, jumin1, jumin2, address1, address2, address3, gender, patientName, tel, email, age
+		  FROM patient_tbl WHERE patientID = #{id}
+	
 	</select>
 	
-	<select id = "selectPatientName" resultType = "String">
-		SELECT patientname FROM patient_tbl WHERE patientid=#{id}
+	<select id="getPwd" resultType="String">
+	
+		SELECT patientPW FROM patient_tbl WHERE patientID = #{id}
+	
 	</select>
 	
-	<insert id = "insertReservation" parameterType="java.util.Map">
-		INSERT INTO reservation_tbl(reservationNo, patientID, patientName, reservationTime, delectionChk1, delectionChk2, delectionChk3, delectionChk4, delectionChk5)
-		 VALUES(reservation_tbl_seq.nextval, #{id}, #{name}, to_timestamp(#{strDate}), 
-		 <foreach collection="delections" item="delection" separator=",">
-		 	#{delection}		 
-		 </foreach>
-		 )
-	</insert>
+	<update id="updatePwd" parameterType="java.util.Map">
 	
-	<select id = "selReservateionNo" resultType="int">
-		SELECT reservationNo FROM reservation_tbl WHERE patientid=#{id}
-	</select>
+		UPDATE patient_tbl SET patientPW = #{patientPW} WHERE patientID = #{patientID}
+	
+	</update>
+
+	<update id="updateAddr" parameterType="java.util.Map">
+	
+		UPDATE patient_tbl SET address1 = #{address1}, address2 = #{address2}, address3 = #{address3} WHERE patientID = #{patientID}
+	
+	</update>
+	
+	<update id="updateInfo" parameterType="java.util.Map">
+	
+		UPDATE patient_tbl SET tel = #{tel} WHERE patientID = #{patientID}
+	
+	</update>
+	
 </mapper>  

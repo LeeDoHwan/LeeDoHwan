@@ -60,7 +60,7 @@
 		                <div class="article-post">
 		                  <p>"건강검진 예약이 완료되었습니다."</p>
 		                  <div><span>마이페이지에서 예약정보를 확인하실 수 있습니다.</span></div><br/>
-		                  <div class="apptInfo"> <b>예약번호 : ${reservationNo} / </b> <b>예약날짜 : ${date} / </b> <b>예약시간 : ${time}</b> </div><br/>
+		                  <div class="apptInfo"> <b>예약번호 : 11111 / </b> <b>예약날짜 : 2020.03.23 / </b> <b>예약시간 : 09:27 AM</b> </div><br/>
 		                  <a href="#" class="btn btn-success btn-large">마이페이지로 이동</a>
 		                </div>
 		              </li>

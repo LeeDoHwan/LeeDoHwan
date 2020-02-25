@@ -305,6 +305,16 @@ thead {
   color: #fff;
   border: 0;
 }
+
+/* 추가 : readonly 일 경우의 form-control  */
+.form-control:read-only {
+  background-color: #54657d;
+  color: #fff;
+  border: 0;
+  font-weight: 999;
+}
+/* 추가 끝 */
+
 .form-control:focus {
   background-color: #60738e;
   color: #fff;
@@ -352,22 +362,14 @@ thead {
   margin-bottom: 15px;
 }
 
-/* 추가 : 비밀번호 변경 btn */
-.btn-mod {
-  border-radius: 5px;
-  transition: all 0.2s ease;
-  margin-top: 8%;
-  margin-left: 20%;
-  max-width: 60%;
-}
-
-.btn-mod-flat {
+/* 추가 : 비밀번호 변경 btn 모서리 둥글게  */
+.btn-rad {
   border-radius: 5px;
   padding: 13px 28px;
   transition: all 0.2s ease;
-  max-width: 80%;
-  margin-left: 10%;
+  max-width: 100%;
 }
+
 /* 추가 : 비밀번호 변경 btn 끝*/
 
 .btn {
@@ -482,6 +484,13 @@ input[type="checkbox"]:focus {
   margin-bottom: 15px;
   overflow-y: scroll;
 }
+
+/* 추가 : 스크롤 없는 부분 추가  */
+.tm-product-table-container-noscroll {
+  margin-bottom: 15px;
+}
+/* 스크롤 없는 부분 추가 끝  */
+
 .tm-product-table tr {
   font-weight: 600;
 }

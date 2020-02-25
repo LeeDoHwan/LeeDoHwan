@@ -84,7 +84,7 @@ function getCommentList(){
                 	html += data[i].writer;
                 	html += "</b></td><td><input type='button' value='수정' onclick='getCommentListUpdate(" + i + ");'></td>";
                 	html += "<td><input type='button' value='삭제' onclick='fn_comment_delete(" + data[i].commentNO + ");'></td>";
-                	html += "</tr></table><table><tr><td style='color:white;'>";
+                	html += "</tr></table><table><tr><td style='color:#787777;'>";
                 	html += data[i].content;
                 	html += "</td></tr></table>";
                 }
@@ -163,7 +163,7 @@ function getCommentListUpdate(num){
  	<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}"> 
  	<input type = "hidden" name = "boardNO" value = "${dto.boardNO}"> 
 	<div>
-		<table>
+		<table class="table">
 			<tr>
 				<td><b>댓글 (댓글 갯수)</b></td>
 			</tr>
@@ -182,7 +182,7 @@ function getCommentListUpdate(num){
 	<!-- 댓글 리스트 띄울 장소  -->
 	<form action="" method="post" id = "commentListForm">
  	<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}"> 
-	<div id = "commentList" align = "left">
+	<div id = "commentList">
 		
 	</div>
 	</form>

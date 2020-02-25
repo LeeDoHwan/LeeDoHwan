@@ -40,47 +40,10 @@ function nextCalendar(){
  	buildCalendar();
 }
 
-function getValue(day){
-	var tbCalendarYM = document.getElementById("tbCalendarYM").innerHTML;
-	var selectDate = document.getElementById("selectDate");
-	var selectTime = document.getElementById("selectTime");
-	selectTime.innerHTML = "";
-	
-	var ym = tbCalendarYM.split('.');
-	var num = day.toString();
-	
-	if(ym[1].length < 2){
-		if(num.length < 2){
-			selectDate.innerHTML = ' ' + ym[0] + ' - 0' + ym[1] + ' - 0' + day;
-		}else{
-			selectDate.innerHTML = ' ' + ym[0] + ' - 0' + ym[1] + ' - ' + day;
-		}
-	}
-	if(ym[1].length > 1){
-		if(num.length <2){
-			selectDate.innerHTML = ' ' + ym[0] + ' - ' + ym[1] + ' - 0' +day;
-		}else{
-			selectDate.innerHTML = ' ' + ym[0] + ' - ' + ym[1] + ' - ' +day;
-		}
-	}
-	
-	var urlName = "selectReservationTime.pa?date=" + ym[0] + "-" + ym[1] + "-" +day;
-	//alert(urlName);
-	
-	$.ajax({
-	      type : "GET",
-	      url : urlName,
-	      dataType : "text",
-	      success : function(data) {
-		          $('#getTime').html(data);
-		        },
-	      error : function() {
-	        alert('통신실패!!');
-	      }
-	    });
-	  
-	/* window.location='getResvTime.pa'; */
-}
+function getValue(date){
+
+	  alert('선택한 날짜 ::' + date.getFullYear()+'년 '+today.getMonth()-1 +'월 '+ today.getDate()+'일 ');
+	 }
 
 
 //달력 생성
@@ -114,18 +77,18 @@ function buildCalendar(){
 	//달력출력
 	for(i=1; i<=lastDate.getDate(); i++) {
 		cell = row.insertCell();
-		cell.innerHTML = '<button style="font-size:1.2em; color:gray; onmouseover=#2ECEB4; border:none; background:#F9F9F9;" onclick="getValue('+  i + ');">' + i + '</button>';
+		cell.innerHTML = '<button onclick="getValue(this)">' + i + '</button>';
 		cnt = cnt + 1;
 		
 		//일요일 계산 
 		if(cnt%7 == 1){
-			cell.innerHTML = "<font color=lightgray>" + i
+			cell.innerHTML = "<font color=#F79DC2>" + i
 		}
 		
-		//토요일 계산 
+		//토요일 계산
 		//셀 추가 
 		if(cnt%7 == 0){
-			cell.innerHTML = "<font color=#F79DC2>" + i
+			cell.innerHTML = "<font color=black>" + i
 			//토요일 다음에 올 셀
 			row = calendar.insertRow();
 		}
@@ -135,48 +98,10 @@ function buildCalendar(){
 				&& today.getMonth() == date.getMonth() 
 				&& i == date.getDate()){
 			
-			cell.style.color = "red" 
+			cell.bgColor = "#FAF58C";
 		}
 	}
 }
-
-// 시간 클릭
-function clickTime(){
-	var time = $("input[name='apptTime']:checked").val();
-
-	var selectTime = document.getElementById("selectTime");
-	selectTime.innerHTML = time;
-	
-}
-
-// 선택검사 클릭
-function clickClinic(){
-	var clinic = "";
-	$("input[name='addCheckup']:checked").each(function(){
-		var name;
-		if($(this).val()==0){
-			name = "유방암";
-		}else if($(this).val()==1){
-			name = "폐렴";
-		}else if($(this).val()==2){
-			name = "심장병";
-		}else if($(this).val()==3){
-			name = "뇌종양";
-		}else if($(this).val()==4){
-			name = "폐결핵";
-		} 
-		if(clinic == ""){
-			
-			clinic += name;
-		
-		}else{
-			clinic += "," + name;
-		}	
-	});
-	
-	selectClinic.innerHTML = clinic;
-}
-
 </script>
 <body id="reportsPage">
 	<div class="" id="home">
@@ -211,7 +136,8 @@ function clickClinic(){
 		  <div class="container-fluid">
 		  <div id="content-section">
 		  
-		
+		  <form action="apptConfirm.pa" method="post" name="apptmentform">
+		  <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 			  <div class="editWrap">
 			  	<ul class="navbar-nav mx-auto h-100">
 			  	<!-- msg start  -->
@@ -252,44 +178,45 @@ function clickClinic(){
 								    buildCalendar();
 								</script>
 							</div>
-							
-							 <form action="appointmentPro.pa" method="post" name="apptmentform">
-								 <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
-								 
-							
 			  				<div class="clinicTime">
 			  					<div class="MiddleTitle">진료시간</div>
-			  					<div id = "getTime">
-			  						<br><br><br><br><br><br><br><br><br>
-								    날짜를 선택하세요.
-			  					</div>
+			  					<table id="appointmentTime">
+			  						
+			  						<tr>
+			  							<td><label><input type="radio" name="apptTime" value="first"/>9:00</label></td>
+			  							<td><label><input type="radio" name="apptTime" value="first"/>9:00</label></td>
+			  							<td><label><input type="radio" name="apptTime" value="first"/>9:00</label></td>
+			  							<td><label><input type="radio" name="apptTime" value="first"/>9:00</label></td>
+			  							<td><label><input type="radio" name="apptTime" value="first"/>9:00</label></td>
+			  							<td><label><input type="radio" name="apptTime" value="first"/>9:00</label></td>
+			  							<td><label><input type="radio" name="apptTime" value="first"/>9:00</label></td>
+			  							<td><label><input type="radio" name="apptTime" value="first"/>9:00</label></td>
+			  						</tr>
+			  					</table>
 			  				</div>
-			  				
-			  				
-								
 			  				<div class="checkupSelect">
 			  					<table>
 			  						<tr>
 			  							<td>선택검사</td>
 			  							<td>
 			  								<label>
-					  						<input type="checkbox" id="breast" name="addCheckup" value="0" onclick="clickClinic();">
+					  						<input type="checkbox" id="addCheckup" name="addCheckup">
 					  						유방암</label>
 					  					
 			  								<label>
-					  						<input type="checkbox" id="pneumonia" name="addCheckup" value="1" onclick="clickClinic();">
+					  						<input type="checkbox" id="addCheckup" name="addCheckup">
 					  						폐렴</label>
 					  					
 			  								<label>
-					  						<input type="checkbox" id="heart" name="addCheckup" value="2" onclick="clickClinic();">
+					  						<input type="checkbox" id="addCheckup" name="addCheckup">
 					  						심장병</label>
 					  					
 			  								<label>
-					  						<input type="checkbox" id="brain" name="addCheckup" value="3" onclick="clickClinic();">
+					  						<input type="checkbox" id="addCheckup" name="addCheckup">
 					  						뇌종양</label>
 					  					
 			  								<label>
-					  						<input type="checkbox" id="tuberculosis" name="addCheckup" value="4" onclick="clickClinic();">
+					  						<input type="checkbox" id="addCheckup" name="addCheckup">
 					  						폐결핵</label>
 					  					</td>
 			  						</tr>
@@ -298,7 +225,6 @@ function clickClinic(){
 			  			</div>
 			  		</li>
 			  		<p class="text-white mt-5"><b>검진 스케줄</b></p>
-			  		
 			  		<li>
 			  			<div class="clinicAppointment">
 			  				<div class="checkupForm">
@@ -320,11 +246,10 @@ function clickClinic(){
 			  				</div>
 			  			</div>
 			  		</li>
-			  		
 			  	</ul>
 		  	</div>
-		  	
-		    </form>
+		  	</form>
+		  
 			</div>
 		</div>
 <!-- contents end -->

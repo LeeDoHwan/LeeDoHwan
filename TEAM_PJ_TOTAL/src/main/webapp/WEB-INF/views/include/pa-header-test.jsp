@@ -65,11 +65,12 @@
                                 <a class="dropdown-item" href="payment2.pa">카드관리</a>
                             </div>
                         </li>
+                       
                         <li class="nav-item dropdown">
 
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <i class="far fa-user"></i>
+                                <i class="far fa-question-circle"></i>
                                 <span>
                                    	약품정보 <i class="fas fa-angle-down"></i>
                                 </span>

@@ -6,16 +6,18 @@ import org.springframework.ui.Model;
 
 public interface PatientService {
 	
+	// 조울증 결과
 	public void BipolarDepressionResult(HttpServletRequest req, Model model);
 
+	// 마이페이지 내용 띄우기
+	public void myPageContents(HttpServletRequest req, Model model);
 	
-	public final String[] RESERTVATIONTIME = {"09:00","10:00","11:00","12:00","14:00","15:00","16:00","17:00"};
+	// 마이페이지 비밀번호 수정
+	public void myPageModPw(HttpServletRequest req, Model model);
 	
-	// 이도환
-	// 예약 - 예약시간불러오기
-	public void selectReservationTime(HttpServletRequest req, Model model);
+	// 마이페이지 내 정보 수정
+	public void myPageModInfo(HttpServletRequest req, Model model);
 	
-	// 박미성
-	// 예약처리
-	public void reservationmPro(HttpServletRequest req, Model model);
+	// 마이페이지 주소 변경
+	public void myPageModAddr(HttpServletRequest req, Model model);
 }

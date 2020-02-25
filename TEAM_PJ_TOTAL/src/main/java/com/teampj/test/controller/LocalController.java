@@ -24,6 +24,14 @@ public class LocalController {
 	@Autowired
 	LocalService service;
 	
+	// 샘플페이지. 나중에 지울것
+	@RequestMapping("sample.lo")
+	public String sample() {
+		logger.info("url ==> sample");
+		
+		return "sample";
+	}
+	
 	// 첫페이지
 	@RequestMapping("start.lo")
 	public String start() {
