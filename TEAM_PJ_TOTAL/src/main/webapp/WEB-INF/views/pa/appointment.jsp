@@ -67,6 +67,18 @@ function getValue(day){
 	var urlName = "selectReservationTime.pa?date=" + ym[0] + "-" + ym[1] + "-" +day;
 	//alert(urlName);
 	
+	/* $(document).ready(function(){
+		$("button").click(function(){
+			if(clicked){
+				$(this).css('color', 'red');
+				clicked = false;
+			}else{
+				$(this).css('color' 'blue');
+				clicked = true; 
+			}  
+		}); 
+	}); */
+	
 	$.ajax({
 	      type : "GET",
 	      url : urlName,
@@ -113,8 +125,19 @@ function buildCalendar(){
 	
 	//달력출력
 	for(i=1; i<=lastDate.getDate(); i++) {
+		
 		cell = row.insertCell();
-		cell.innerHTML = '<button style="font-size:1.2em; color:gray; onmouseover=#2ECEB4; border:none; background:#F9F9F9;" onclick="getValue('+  i + ');">' + i + '</button>';
+		cell.style.fontSize = '1.2em';
+		var calendarDate = new Date(today.getFullYear(), today.getMonth(), i);
+		var todayDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+		if(calendarDate.getTime() < todayDate.getTime()){
+			cell.style.color = 'lightgray';
+			cell.innerHTML = "<font color=lightgray>" + i
+			
+		}else{
+			
+			cell.innerHTML = '<button style="color:gray; border:none; background:#F9F9F9;" onclick="getValue('+  i + ');">' + i + '</button>';
+		}
 		cnt = cnt + 1;
 		
 		//일요일 계산 
@@ -134,8 +157,8 @@ function buildCalendar(){
 		if(today.getFullYear() == date.getFullYear() 
 				&& today.getMonth() == date.getMonth() 
 				&& i == date.getDate()){
-			
-			cell.style.color = "red" 
+			cell.style.color = 'red';
+			/* cell.bgColor = "red"  */
 		}
 	}
 }
@@ -175,6 +198,14 @@ function clickClinic(){
 	});
 	
 	selectClinic.innerHTML = clinic;
+}
+
+// 예약하기 체크여부
+function apptChk(){
+	if($('input:radio[name="apptTime"]:checked').length < 1){
+		alert("건강검진 예약일정을 선택해주세요.");
+		return false;
+	}
 }
 
 </script>
@@ -247,13 +278,15 @@ function clickClinic(){
 										<td>토</td>
 									</tr>
 							
-								</table>
+								
 								<script type="text/javascript">
 								    buildCalendar();
 								</script>
+								
+								</table>
 							</div>
 							
-							 <form action="appointmentPro.pa" method="post" name="apptmentform">
+							 <form action="appointmentPro.pa" method="post" name="apptmentform" onsubmit="return apptChk();">
 								 <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 								 
 							

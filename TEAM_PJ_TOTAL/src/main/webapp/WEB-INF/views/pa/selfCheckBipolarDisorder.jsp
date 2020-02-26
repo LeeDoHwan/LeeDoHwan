@@ -42,7 +42,8 @@
 <!-- msg start  -->
       	 <div class="row">
        	    <div class="col">
-       	        <p class="text-white mt-5 mb-5"><b>조울증 자가진단</b></p>
+       	        <h3 class="text-white mt-5 mb-5" style="text-align:center">
+       	        <b>조울증 자가진단<small>(출처:대한조울우울병학회)</small></b></h3>
        	    </div>
      	 </div>
 <!-- msg close -->

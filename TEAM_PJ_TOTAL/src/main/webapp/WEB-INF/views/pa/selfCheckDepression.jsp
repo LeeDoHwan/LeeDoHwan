@@ -43,16 +43,17 @@
 <!-- msg start  -->
       	 <div class="row">
        	    <div class="col">
-       	        <p class="text-white mt-5 mb-5"><b>우울증 자가진단</b></p>
+       	        <h3 class="text-white mt-5 mb-5" style="text-align:center">
+       	        <b>우울증 자가진단<small>(출처 : 삼성서울병원)</small></b>
+       	        </h3>
        	    </div>
      	 </div>
 <!-- msg close -->
 
 		  <div class="controls">
-			<form action = "selfCheckDepressionResult.pa" method="post" 
-			name="selfCheckBipolarDisorderResult" onsubmit="return totalScore();">
+			<form method="post" name="selfCheckDepressionResult">
 				<input type = "hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> 
-				<div align="center" style="">
+				<div align="center">
 				<table class="table table-bordered table-striped" style="width:750px; height:900px;">
 					<tr>
 						<th>질문</th>
@@ -402,11 +403,11 @@
 						</th>
 					</tr>
 				</table>
-				</div>
-				<br>
-				<div align="center"><input type="submit" class="btn btn-info" value="진단결과확인" /></div>
-			</form>
 			</div>
+			<br>
+			<div align="center"><input type="button" class="btn btn-info" value="진단결과확인" onclick="return totalScore();"></div>
+		</form>
+	</div>
   
   </div>
 </div>
@@ -433,11 +434,13 @@
 <script src="resources/js/matrix.tables.js"></script> <!-- 필요 -->
 <!-- 끝 -->
 
+<!-- 자가진단 점수합산 -->
 <script>
 //자가진단 점수 합산
 function totalScore() {
 	
- 	var depression = 0;	//점수 합산한 값
+ 	var depScore = 0;	//점수 합산 & 계산한 값
+ 	var dep = 0;	//점수 합산한 값
 	var scoreValue;	//선택한 버튼의 값
 	
 	for(var i =1; i<=20; i++) {
@@ -446,14 +449,16 @@ function totalScore() {
 		for(var j=0; j<score.length; j++) {
 			if(score[j].checked) {
 				scoreValue = score[j].value;
-
 			}
 		}
-		depression += Number(scoreValue);
+		dep += Number(scoreValue);
 	}
-	alert('depression : ' + depression);
+	depScore = dep;
+	
+	window.location.href="selfCheckDepressionResult.pa?depScore="+depScore;
 	
 }
 </script>
+<!-- 자가진단 점수합산 끝-->
 </body>
 </html>

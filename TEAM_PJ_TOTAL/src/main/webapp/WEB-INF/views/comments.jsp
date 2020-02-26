@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +16,8 @@ function fn_comment(){
         url : '${pageContext.request.contextPath}/comments.lo',
         data:$("#commentForm").serialize(),
         success : function(data){
-        	alert("댓글 추가 성공");
-            getCommentList(); 	// 댓글 목록 읽어오기
+           alert("댓글 추가 성공");
+            getCommentList();    // 댓글 목록 읽어오기
         },
         error:function(){
             alert("댓글 추가 실패");
@@ -30,8 +31,8 @@ function fn_comment_delete(commentNO){
         type:'GET',
         url : '${pageContext.request.contextPath}/deleteComment.lo?commentNO='+commentNO,
         success : function(data){
-        	alert("댓글 삭제 성공");
-            getCommentList(); 	// 댓글 목록 읽어오기
+           alert("댓글 삭제 성공");
+            getCommentList();    // 댓글 목록 읽어오기
         },
         error:function(){
             alert("댓글 삭제 실패");
@@ -46,8 +47,8 @@ function fn_comment_update(commentNO){
         url : '${pageContext.request.contextPath}/updateComment.lo?commentNO='+commentNO,
         data:$("#commentListForm").serialize(),
         success : function(data){
-        	alert("댓글 수정 성공");
-            getCommentList(); 	// 댓글 목록 읽어오기
+           alert("댓글 수정 성공");
+            getCommentList();    // 댓글 목록 읽어오기
         },
         error:function(){
             alert("댓글 수정 실패");
@@ -79,16 +80,22 @@ function getCommentList(){
             
             if(data.length > 0){
                html += "<div><span style = 'font-weight : bold;'>댓글</div>";
-                for(i=0; i<data.length; i++){
-                	html += "<table><tr><td><b>";
-                	html += data[i].writer;
-                	html += "</b></td><td><input type='button' value='수정' onclick='getCommentListUpdate(" + i + ");'></td>";
-                	html += "<td><input type='button' value='삭제' onclick='fn_comment_delete(" + data[i].commentNO + ");'></td>";
-                	html += "</tr></table><table><tr><td style='color:white;'>";
-                	html += data[i].content;
-                	html += "</td></tr></table>";
+               for(i=0; i<data.length; i++){
+                  html += "<div class='container-fluid'>";
+                  html += "<div class='row tm-content-row'>";
+                html += "<div class='tm-product-table-container-noscroll col-12'>";
+                  html += "<table class='table table-hover tm-table-small tm-product-table' style='width:1100px;'>";
+                  html += "<thead> <td scope='col'><a style='color:#2eceb4;'>"+ data[i].writer+"</a>&nbsp;&nbsp;";
+                  var key = "<%=(String)session.getAttribute("mem_id")%>";
+                  
+                if (key == data[i].writer){
+                     html += "<img src='resources/img/modify.png' style='width:30px; height:30px;' onclick='getCommentListUpdate(" + i + ");'>";
+                     html += "&nbsp;<img src='resources/img/delete.png' style='width:30px; height:30px;' onclick='fn_comment_delete(" + data[i].commentNO + ")'>";
                 }
-                
+                  html += "<br/><br/><a style='color:white;'>"+ data[i].content+"</a></td>";
+                  html += "</td></table>";
+                  html += "</thead></table></div></div></div>";
+               }           
             } else {
                 
                 html += "<div>";
@@ -120,21 +127,27 @@ function getCommentListUpdate(num){
             var cCnt = data.length;
             
             if(data.length > 0){
-               html += "<div><span style = 'font-weight : bold;'>댓글</div>";
+            	html += "<div><span style = 'font-weight : bold;'>댓글</div>";
                 for(i=0; i<data.length; i++){
-                	
-                	html += "<table><tr><td><b>";
-                	html += data[i].writer;
-                	html += "</b></td><td><input type='button' value='수정완료' onclick='fn_comment_update(" + data[i].commentNO + ");'></td>";
-                	html += "<td><input type='button' value='수정취소' onclick='getCommentList();'></td>";
-                	html += "</tr></table><table><tr><td style='color:#787777;'>";
-                	if(i==num){
-                		html += "<input type = 'text' name = 'content' value = '" + data[i].content + "'>";
-                	}else{
-                		html += data[i].content;
-                	}
-                	html += "</td></tr></table>";
-                	
+                   html += "<div class='container-fluid'>";
+                   html += "<div class='row tm-content-row'>";
+                   html += "<div class='tm-product-table-container-noscroll col-12'>";
+                   html += "<table class='table table-hover tm-table-small tm-product-table' style='width:1100px;'>";
+                   html += "<thead> <td scope='col'><a style='color:#2eceb4;'>"+ data[i].writer+"</a>&nbsp;&nbsp;";
+                   var key = "<%=(String)session.getAttribute("mem_id")%>";
+                   
+                   if (key == data[i].writer){
+                      html += "<img src='resources/img/modify.png' style='width:30px; height:30px;' onclick='fn_comment_update(" + data[i].commentNO + ")'>";
+                      html += "&nbsp;<img src='resources/img/delete.png' style='width:30px; height:30px;' onclick='getCommentList()'>";
+                   }
+                   if(i==num){
+                      html += "<br/><br/><a style='color:white;'><input type = 'text' name = 'content' value = '" + data[i].content + "'></a></td>";
+                   }else{
+                	   html += "<br/><br/><a style='color:white;'>"+ data[i].content+"</a></td>";
+                   }
+                   html += "</td></table>";
+                   html += "</thead></table></div></div></div>";   
+                   
                 }
                 
             } else {
@@ -159,32 +172,32 @@ function getCommentListUpdate(num){
 </script>
 </head>
 <body>
-	<form action="comments.lo" method="post" id = "commentForm">
- 	<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}"> 
- 	<input type = "hidden" name = "boardNO" value = "${dto.boardNO}"> 
-	<div>
-		<table>
-			<tr>
-				<td><b>댓글 (댓글 갯수)</b></td>
-			</tr>
-		</table>
-	</div>
-	<div style="/* border:solid 0.5px black;  */width:1050px;">
-		<table>
-			<tr>
-				<td><input type="text" name="content" style="height:50px; width:800px;" placeholder="댓글을 작성해주세요."></td>
-				<td><input type="button" onclick = "fn_comment();" value="작성" style="background-color:#6a7bad; width:50px; height:55px; color:white;"></td>
-			</tr>
-		</table>
-	</div>	
-	</form>
-	
-	<!-- 댓글 리스트 띄울 장소  -->
-	<form action="" method="post" id = "commentListForm">
- 	<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}"> 
-	<div id = "commentList" align = "left">
-		
-	</div>
-	</form>
+   <form action="comments.lo" method="post" id = "commentForm">
+    <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}"> 
+    <input type = "hidden" name = "boardNO" value = "${dto.boardNO}"> 
+   <div>
+      <table>
+         <tr>
+            <td><hr style="color:white;"></td>
+         </tr>
+      </table>
+   </div>
+   <div style="width:1050px;">
+      <table>
+         <tr>
+            <td><input type="text" name="content" style="height:50px; width:1050px;" placeholder="댓글을 작성해주세요."></td>
+            <td><input type="button" onclick = "fn_comment();" value="작성" style="background-color:#6a7bad; width:50px; height:55px; color:white;"></td>
+         </tr>
+      </table>
+   </div>   
+   </form>
+                
+   <!-- 댓글 리스트 띄울 장소  -->
+   <form action="" method="post" id = "commentListForm">
+   <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}"> 
+   <div id = "commentList" align = "left">
+      
+   </div>
+   </form>
 </body>
 </html>

@@ -48,6 +48,7 @@
 <!-- msg close -->  
   
 <!-- contents start -->  
+	
 	<div class="container-fluid">
 	  	<div id="content-section">
 	    	<div class="apptConfirm">
@@ -59,9 +60,9 @@
 		                </div>
 		                <div class="article-post">
 		                  <p>"건강검진 예약이 완료되었습니다."</p>
-		                  <div><span>마이페이지에서 예약정보를 확인하실 수 있습니다.</span></div><br/>
-		                  <div class="apptInfo"> <b>예약번호 : ${reservationNo} / </b> <b>예약날짜 : ${date} / </b> <b>예약시간 : ${time}</b> </div><br/>
-		                  <a href="#" class="btn btn-success btn-large">마이페이지로 이동</a>
+		                  <div><span>예약조회 페이지에서 예약정보를 확인하실 수 있습니다.</span></div><br/>
+		                  <div class="apptInfo"> <b>예약번호 : ${param.reservationNo} / </b> <b>예약날짜 : ${param.date} / </b> <b>예약시간 : ${param.time}</b> </div><br/>
+		                  <a href="#" class="btn btn-success btn-large">예약조회</a>
 		                </div>
 		              </li>
 	            	</ul>

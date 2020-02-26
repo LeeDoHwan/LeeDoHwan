@@ -414,6 +414,8 @@ pre code {
 	max-height:340px;
 	overflow-y:scroll
 }
+
+/* 추가 : 진단용 컨테이너  .container-dig */
 .container {
 	width:100%;
 	padding-right:15px;
@@ -421,8 +423,21 @@ pre code {
 	margin-right:auto;
 	margin-left:auto
 }
+
+.container-dig {
+	width:100%;
+	padding-right:15px;
+	padding-left:15px;
+	margin-right:auto;
+	margin-left:auto
+}
+
 @media (min-width:576px) {
 	.container {
+		max-width:540px
+	}
+	
+	.container-dig {
 		max-width:540px
 	}
 }
@@ -430,9 +445,17 @@ pre code {
 	.container {
 		max-width:720px
 	}
+	
+	.container-dig {
+		max-width:720px
+	}
 }
 @media (min-width:992px) {
 	.container {
+		max-width:960px
+	}
+	
+	.container-dig {
 		max-width:960px
 	}
 }
@@ -440,7 +463,13 @@ pre code {
 	.container {
 		max-width:1140px
 	}
+	
+	.container-dig {
+		max-width:1300px
+	}
 }
+/* 추가 끝 */
+
 .container-fluid {
 	width:100%;
 	padding-right:15px;
@@ -1353,12 +1382,23 @@ pre code {
 .table-bordered thead td,.table-bordered thead th {
 	border-bottom-width:2px
 }
+
 .table-borderless tbody+tbody,.table-borderless td,.table-borderless th,.table-borderless thead th {
 	border:0
 }
-.table-striped tbody tr:nth-of-type(odd) {
+
+/* TEST START : 테이블 홀수일 때 색깔 바뀌는거 방지. */
+/* .table-striped tbody tr:nth-of-type(odd) {
+	background-color:rgba(0,0,0,.05)
+} */
+/* TEST END */
+
+/* 추가 : table 색 바뀌어야 하는 부분 */
+.theader-custom {
 	background-color:rgba(0,0,0,.05)
 }
+/* 추가 끝 */
+
 .table-hover tbody tr:hover {
 	background-color:rgba(0,0,0,.075)
 }
@@ -1371,15 +1411,18 @@ pre code {
 .table-hover .table-primary:hover>td,.table-hover .table-primary:hover>th {
 	background-color:#9fcdff
 }
+
 .table-secondary,.table-secondary>td,.table-secondary>th {
 	background-color:#d6d8db
-}
+} 
+
 .table-hover .table-secondary:hover {
 	background-color:#c8cbcf
 }
 .table-hover .table-secondary:hover>td,.table-hover .table-secondary:hover>th {
 	background-color:#c8cbcf
 }
+
 .table-success,.table-success>td,.table-success>th {
 	background-color:#c3e6cb
 }
@@ -1416,6 +1459,7 @@ pre code {
 .table-hover .table-danger:hover>td,.table-hover .table-danger:hover>th {
 	background-color:#f1b0b7
 }
+
 .table-light,.table-light>td,.table-light>th {
 	background-color:#fdfdfe
 }
@@ -1425,6 +1469,7 @@ pre code {
 .table-hover .table-light:hover>td,.table-hover .table-light:hover>th {
 	background-color:#ececf6
 }
+
 .table-dark,.table-dark>td,.table-dark>th {
 	background-color:#c6c8ca
 }
@@ -1463,9 +1508,12 @@ pre code {
 .table-dark.table-bordered {
 	border:0
 }
+
+
 .table-dark.table-striped tbody tr:nth-of-type(odd) {
 	background-color:rgba(255,255,255,.05)
 }
+
 .table-dark.table-hover tbody tr:hover {
 	background-color:rgba(255,255,255,.075)
 }
@@ -1949,13 +1997,15 @@ a.btn.disabled,fieldset:disabled a.btn {
 }
 .btn-primary.disabled,.btn-primary:disabled {
 	color:#fff;
-/* 	background-color:#007bff;
-	border-color:#007bff */
+	/* 변경 : 원래 쨍한 파란색이었는데, 로고색으로 바꿈. btn 클릭시 색 변화가 이상해서...  */
+ 	background-color:#2eceb4;
+	border-color:#2eceb4 
 }
 .btn-primary:not(:disabled):not(.disabled).active,.btn-primary:not(:disabled):not(.disabled):active,.show>.btn-primary.dropdown-toggle {
 	color:#fff;
-	background-color:#0062cc;
-	border-color:#005cbf
+	/* 변경 : 원래 쨍한 파란색이었는데, 로고색으로 바꿈. btn 클릭시 색 변화가 이상해서...  */
+	background-color:#2eceb4;
+	border-color:#2eceb4;
 }
 .btn-primary:not(:disabled):not(.disabled).active:focus,.btn-primary:not(:disabled):not(.disabled):active:focus,.show>.btn-primary.dropdown-toggle:focus {
 	box-shadow:0 0 0 .2rem rgba(0,123,255,.5)

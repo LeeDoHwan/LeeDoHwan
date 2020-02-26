@@ -60,33 +60,35 @@
 		          </div>
 		          <div class="widget-content nopadding">
 		            <form class="form-horizontal" method="post" action="#" name="basic_validate" id="basic_validate" novalidate="novalidate">
+		              <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
+		              <input type= "hidden" name = "reservationNo" value="${vo.reservationNo}">
 		              <div class="control-group">
 		                <label class="control-label">이름</label>
 		                 <div class="controls">
-		                  	박건형
+		                  	${vo.patientName}
 		                </div> 
 		              </div>
 		              <div class="control-group">
 		                <label class="control-label">예약번호</label>
 		                 <div class="controls">
-		                  15-73001234
+		                  ${vo.reservationNo}
 		                </div> 
 		              </div>
 		              <div class="control-group">
 		                <label class="control-label">주민번호</label>
 		                 <div class="controls">
-		                  930618-1******
+		                  ${vo.jumin1} - ${vo.jumin2} 
 		                </div>
 		              </div>
 		              <div class="control-group">
 		                <label class="control-label">예약일시</label>
 		                 <div class="controls">
-		                  2020-2-22
+		                 ${vo.reservationTime}
 		                </div> 
 		              </div>
 		              <div class="form-actions">
 		                <input type="submit" value="확인" class="btn btn-success">
-		                <input type="submit" value="예약취소" class="btn btn-success">
+		                <input formaction="deleteReservationPro.pa" type="submit" value="예약취소" class="btn btn-success">
 		              </div>
 		              
 		            </form>

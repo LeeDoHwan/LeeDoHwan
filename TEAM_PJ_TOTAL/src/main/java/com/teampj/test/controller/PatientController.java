@@ -27,15 +27,6 @@ public class PatientController {
 		return "pa/appointment";
 	}
 
-	
-	// 예약조회
-	@RequestMapping("appointment2.pa")
-	public String appointment2() {
-		logger.info("url ==> appointment2");
-		
-		return "pa/appointment2";
-	}
-
 	// 결과 조회
 	@RequestMapping("appointment3.pa")
 	public String appointment3() {
@@ -119,20 +110,52 @@ public class PatientController {
 		return "pa/result";
 	}
 	
-	// 허소정 마이페이지 - 수정, 삭제
-	@RequestMapping("myPage_pa.pa")
-	public String myPage_pa() {
-		logger.info("url ==> myPage_pa");
-		
-		return "pa/myPage_pa";
-	}
-	
 	// 허소정 약품검색
 	@RequestMapping("medictionary.pa")
 	public String medictionary() {
 		logger.info("url ==> medictionary");
 		
 		return "pa/medictionary";
+	}
+	
+	// 허소정 마이페이지 - 정보 띄우기 
+	@RequestMapping("myPage_pa.pa")
+	public String myPage_pa(HttpServletRequest req, Model model) {
+		logger.info("url ==> myPage_pa");
+		
+		service.myPageContents(req, model);
+		
+		return "pa/myPage_pa";
+	}
+	
+	// 허소정 마이페이지 - 비밀번호 변경
+	@RequestMapping("myPageModPw.pa")
+	public String myPageModPw(HttpServletRequest req, Model model) {
+		logger.info("url ==> myPageModPw");
+		
+		service.myPageModPw(req, model);
+		
+		return "pa/myPageModPro";
+	}
+	
+	// 허소정 마이페이지 - 내 정보 변경 (신장, 체중, 전화번호)
+	@RequestMapping("myPageModInfo.pa")
+	public String myPageModInfo(HttpServletRequest req, Model model) {
+		logger.info("url ==> myPageModInfo");
+		
+		service.myPageModInfo(req, model);
+		
+		return "pa/myPageModPro";
+	}
+	
+	// 허소정 마이페이지 - 주소 변경 
+	@RequestMapping("myPageModAddr.pa")
+	public String myPageModAddr(HttpServletRequest req, Model model) {
+		logger.info("url ==> myPageModAddr");
+		
+		service.myPageModAddr(req, model);
+		
+		return "pa/myPageModPro";
 	}
 	
 	/////////////////////////////////////////////////////////////
@@ -164,8 +187,10 @@ public class PatientController {
 	
 	// 우울증 자가진단 결과 페이지
 	@RequestMapping("selfCheckDepressionResult.pa")
-	public String selfCheckDepressionResult() {
+	public String selfCheckDepressionResult(HttpServletRequest req, Model model) {
 		logger.info("url ==> selfCheckDepressionResult");
+		
+		service.depressionResult(req, model);
 		
 		return "pa/selfCheckDepressionResult";
 	}
@@ -175,14 +200,33 @@ public class PatientController {
 	public String selfCheckBipolarDisorderResult(HttpServletRequest req, Model model) {
 		logger.info("url ==> selfCheckBipolarDisorderResult");
 		
-		service.BipolarDepressionResult(req, model);
+		service.bipolarDepressionResult(req, model);
 		
 		return "pa/selfCheckBipolarDisorderResult";
 	}
 	
-	// 사진 감정분석(감정인식)
+	//조울증 결과 제출
+	@RequestMapping("bipolarResultPro.pa")
+	public String bipolarResultPro(HttpServletRequest req, Model model) {
+		logger.info("url ==> bipolarResultPro");
+		
+		service.bipolarResultPro(req, model);
+		
+		return "pa/bipolarResultPro";
+	}	
+	
+	//우울증 결과제출
+	@RequestMapping("depressionResultPro.pa")
+	public String depressionResultPro(HttpServletRequest req, Model model) {
+		logger.info("url ==> depressionResultPro");
+		
+		service.depressionResultPro(req, model);
+		
+		return "pa/depressionResultPro";
+	}
+	//감정인식
 	@RequestMapping("emotionRecognition.pa")
-	public String emotionRecognition() {
+	public String emotionRecognition(HttpServletRequest req, Model model) {
 		logger.info("url ==> emotionRecognition");
 		
 		return "pa/emotionRecognition";
@@ -197,7 +241,7 @@ public class PatientController {
 		return "pa/apptConfirm";
 	}
 	////////////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////	
 	// 박미성
 	// 예약처리
 	@RequestMapping("appointmentPro.pa")
@@ -206,8 +250,18 @@ public class PatientController {
 		
 		service.reservationmPro(req, model);
 		
+		return "pa/appointmentPro";
+	}
+	
+	// 예약확인 페이지
+	@RequestMapping("appointmentConfirm.pa")
+	public String appointmentConfirm(HttpServletRequest req, Model model) {
+		logger.info("url ==> appointmentConfirm");
+		
 		return "pa/apptConfirm";
 	}
+	
+	///////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////
 	// 이도환
 	// 예약 - 예약시간불러오기
@@ -220,4 +274,28 @@ public class PatientController {
 		return "pa/selectReservationTime";
 	}
 	////////////////////////////////////////////////////////////////
+	
+	////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////
+	// 박건형
+	// 예약조회
+	@RequestMapping("appointment2.pa")
+		public String appointment2(HttpServletRequest req, Model model) {
+		logger.info("url ==> appointment2");
+		service.searchreservation(req, model);
+		
+		return "pa/appointment2";
+	}
+	////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////
+	// 박건형
+	// 예약취소(삭제)
+	
+	@RequestMapping("deleteReservationPro.pa")
+		public String deleteReservationPro(HttpServletRequest req, Model model) {
+		logger.info("url ==> deleteReservationPro.pa");
+		service.deleteReservation(req, model);
+		
+		return "pa/deleteReservationPro";
+	}
 }

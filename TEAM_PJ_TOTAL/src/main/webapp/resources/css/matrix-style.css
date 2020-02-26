@@ -533,11 +533,13 @@ hr{ border-top-color:#dadada;}
 	margin-top: 0;
 	margin-bottom: 0;
 }
+
 .widget-title, .modal-header, .table th, div.dataTables_wrapper .ui-widget-header {
 	background:#efefef;
 	border-bottom: 1px solid #CDCDCD;
 	height: 36px;  
 }
+
 .widget-title .nav-tabs {
 	border-bottom: 0 none; 
 }
@@ -563,12 +565,12 @@ hr{ border-top-color:#dadada;}
 	border-width: 0 1px;
 	color: #2b2b2b;
 }
-/* TEST start  */ /* li.active a */
+/* 추가 : 아마도 탭 관련. */
 .widget-title .nav-tabs li a.active {
 	background-color: #F9F9F9 !important;
 	color: #444444;
 } 
-/* TEST end */
+/* 추가 끝 */
 .widget-title span.icon {
 	padding: 9px 10px 7px 11px;
 	float: left; border-right:1px solid #dadada;
@@ -948,7 +950,7 @@ hr{ border-top-color:#dadada;}
 	max-width: 76%;
 }
 /* Tables */
-tr:hover{ background:#f6f6f6;}
+/* tr:hover{ background:#f6f6f6;} */
 span.icon .checker {
 	margin-top: -5px;
 	margin-right: 0;
@@ -1032,7 +1034,8 @@ div.dataTables_wrapper .ui-widget-header {
 .dataTables_filter input {
 	margin-bottom: 0;
 }
-.table th {
+/* TEST START  */
+/* .table th {
 	height: auto;
 	font-size: 10px;
 	padding: 5px 10px 2px;
@@ -1052,7 +1055,8 @@ div.dataTables_wrapper .ui-widget-header {
 }
 .table tr.checked td {
 	background-color: #FFFFE3 !important;
-}
+} */
+/* TEST END */
 /* Misc */
 .nopadding {
 	padding: 0 !important;
@@ -1135,18 +1139,20 @@ form {
 }
 .form-horizontal .control-label {
 	padding-top: 15px;
-	width: 180px;
+	/* width: 180px; TEST : input 관련 크기 조절 */
 }
 
 .form-horizontal .controls {
-	margin-left: 200px;
+	/* margin-left: 200px; TEST : input 관련 크기 조절  */
 	padding: 10px 0;
 }
 
+/* 추가 시작 */
 .form-horizontal .controls-custom  {
 	margin-left: 140px;
 	padding: 10px 0;
 }
+/* 추가 끝 */
 
 .form-horizontal input[type=text], .form-horizontal input[type=password], .form-horizontal textarea {
 }

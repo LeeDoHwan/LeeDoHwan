@@ -9,74 +9,96 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Board</title>
     
-    <!-- 기존 부트스트랩 css 추가 부분 -->
-	<link rel="stylesheet" href="resources/css/bootstrap2.min.css" />
-	<link rel="stylesheet" href="resources/css/matrix-style.css" />
-	<link href="resources/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <!-- 기존 부트스트랩 css 추가 부분 :: 여기서는 기존 부트스트랩 css를 쓸 필요가 없어서 주석처리 해놓습니다.  -->
+	<!-- <link rel="stylesheet" href="resources/css/bootstrap2.min.css" /> -->
+	<!-- <link rel="stylesheet" href="resources/css/matrix-style.css" /> -->
+	<!-- <link href="resources/font-awesome/css/font-awesome.css" rel="stylesheet" /> -->
 	<!-- 끝 -->
 	
 	<!-- setting : 현재 부트스트랩 css 추가. 순서대로 안하면 깨져서 우선 현재 부트스트랩만 추가해놓음.-->
     <%@ include file = "include/setting.jsp" %> 
+	
 </head>
+
 <body id="reportsPage">
 	<div class="" id="home">
-
-<!-- header start -->
+	
+	<!-- header start -->
 
 	<c:if test = "${sessionScope.authority == 'ROLE_PATIENT'}">
 		<%@ include file="include/pa-header-test.jsp" %>
 	</c:if>
-	<%-- 
 	<c:if test = "${sessionScope.authority == 'ROLE_DOCTOR'}">
-		<%@ include file="include/dr-sidebar.jsp" %>
+		<%@ include file="include/dr-header-test.jsp" %>
 	</c:if>
 	<c:if test = "${sessionScope.authority == 'ROLE_ADMIN'}">
-		<%@ include file="include/ho-sidebar.jsp" %>
-	</c:if> --%>
+		<%@ include file="include/dr-header-test.jsp" %>
+	</c:if> 
 	
 <!-- header end -->
 
 <!-- container -->
 		<div class="container">
-	<!-- msg start  -->
+		
+<!-- msg start  -->
       	 <div class="row">
        	    <div class="col">
-       	        <p class="text-white mt-5 mb-5"><b>게시판</b></p>
+       	        <p class="text-white mt-5 mb-5"><b>공지사항</b></p>
        	    </div>
      	 </div>
-	<!-- msg close -->
-  
-	<!-- contents start -->
-			 <div class="container-fluid">
-	         <!-- row -->
-		         <div class="row-fluid">
-					<div class="span12">
-				        <div class="widget-box">
-				          <div class="widget-title"> <span class="icon"> <i class="icon-list"></i> </span>
-				            <h5>${dto.subject}<code>${dto.writer}</code></h5>
-				          </div>
-				          <div class="widget-content">${dto.content}</div>
-				        </div>
-				    </div>
-				 </div>
-			 </div>
-		  	<c:if test="${'ROLE_ADMIN' eq sessionScope.authority}"> 
-		   		<input type="button" class="btn btn-mini" value="수정" onclick="location.href='boardModifyForm.ho?boardNO=${dto.boardNO}'"> 
-		   		<input type="button" class="btn btn-mini" value="삭제" onclick="location.href='boardDeletePro.ho?boardNO=${dto.boardNO}'"> 
-		   	</c:if>
-	   	
-	   	<div align = "center">
-		<%@ include file = "comments.jsp" %>   	   	
-		</div>
-		<!-- contents end -->	 	
-		</div>
+<!-- msg close -->
+
+<!-- contents start -->
+	<div class="container-fluid">
+      <div class="row tm-content-row">
+           <div class="tm-product-table-container-noscroll col-12">
+              <table class="table table-hover tm-table-small tm-product-table">
+                <thead>
+                  <tr>
+                    <th scope="col">NO.${dto.boardNO}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a style="color:#cccccc;">${dto.subject}</a></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td scope="row" style="padding-right:150px; color:white;">${dto.content}<!-- <input type="checkbox" /> --></td>
+                    <td style = "padding-right:150px;cursor: pointer"></td>
+                    <td style="padding-right:150px;"></td>
+                    <td align="right"></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+                <c:if test="${'ROLE_ADMIN' eq sessionScope.authority}"> 
+	                <tbody>  
+	                  <tr>
+	                  	<td align="right" colspan="8">
+	                    	<input type="button"  value="수정" onclick="location.href='boardModifyForm.ho?boardNO=${dto.boardNO}'"> 
+	                    </td>			
+	                  </tr>
+	                </tbody>
+                </c:if>
+                
+              </table>
+	      <div>
+	     	 <%@ include file = "comments.jsp" %>            
+	      </div>
+      <!-- contents end -->       
+      	</div>
+    	</div>
 	</div>
-<!-- container end -->
+</div>
+
+<!-- contents end -->
+ </div> 
+<!-- close content -->
 
 <!--Footer-part-->
 
-<%@ include file="include/footer.jsp" %>
-
+	<%@ include file="include/footer.jsp" %>
+	
 <!--end-Footer-part-->
 
 <script src="resources/js/jquery-3.3.1.min.js"></script>

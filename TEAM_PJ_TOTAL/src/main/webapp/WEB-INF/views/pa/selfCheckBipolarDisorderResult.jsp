@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> 조울증 자가진단 결과 페이지 </title>
+    <title> 조울증 자가진단 결과 </title>
     
     <!-- 기존 부트스트랩 css 추가 부분 -->
 	<link rel="stylesheet" href="resources/css/bootstrap2.min.css" />
@@ -46,8 +46,8 @@
        	    </div>
      	 </div>
 
-	    <div align="center"> <!-- 원래 form action :  BipolarResultPro.pa 였습니다. -->
-		    <form action="#" method="post">
+	    <div align="center">
+		    <form action="bipolarResultPro.pa" method="post">
 		    <input type = "hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> 
 				<input type="hidden" name="manicScore" value="${manicScore}">
  			    <table class="table table-bordered table-striped">
